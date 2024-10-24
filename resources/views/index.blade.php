@@ -83,8 +83,8 @@
     <script type="text/javascript" src="/wp-includes/js/dist/i18n.min.js" id="wp-i18n-js"></script>
 
     <script type="text/javascript" src="/wp-includes/js/dist/a11y.min.js" id="wp-a11y-js"></script>
-    <script type="text/javascript" src="/wp-includes/js/jquery/ui/autocomplete.min.js"
-        id="jquery-ui-autocomplete-js"></script>
+    <script type="text/javascript" src="/wp-includes/js/jquery/ui/autocomplete.min.js" id="jquery-ui-autocomplete-js">
+    </script>
 
     <script type="text/javascript" src="/wp-content/plugins/madara-core/assets/js/script.js" id="wp-manga-js"></script>
     <script type="text/javascript" src="/wp-content/plugins/wp-manga-chapter-coin/assets/js/frontend.js"
@@ -93,8 +93,8 @@
     <script type="text/javascript" src="/wp-content/themes/madara/js/shuffle.min.js" id="shuffle-js"></script>
 
     <script type="text/javascript" src="/wp-content/themes/madara/js/template.js" id="madara-js-js"></script>
-    <script type="text/javascript" src="/wp-content/themes/madara-child-x/assets/js/child.js"
-        id="madara-child-js-js"></script>
+    <script type="text/javascript" src="/wp-content/themes/madara-child-x/assets/js/child.js" id="madara-child-js-js">
+    </script>
     <script type="text/javascript" src="/wp-content/plugins/mycred/addons/badges/assets/js/front.js"
         id="mycred-badge-front-js"></script>
     <!--End JS-->
@@ -248,7 +248,9 @@
                     <div class="center">
                         <div class="section_adult off">
                             <a href="/" target="_self" title="Family Safe">
-                                <span class="dot"><!-- --></span><span>Family Safe</span>
+                                <span class="dot">
+                                    <!-- -->
+                                </span><span>Family Safe</span>
                             </a>
                         </div>
                     </div>
@@ -740,10 +742,9 @@
                                                                     <div class="page-content-listing item-chapters">
                                                                         <table
                                                                             class="manga-shortcodes manga-chapters-listing">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td class="thumb"><a
-                                                                                            href="/manga/manga-17-2/"
+                                                                            <tbody id="row_recent">
+                                                                                {{-- <tr>
+                                                                                    <td class="thumb"><a href="#"
                                                                                             title="Manga 17"><img
                                                                                                 loading="lazy"
                                                                                                 decoding="async"
@@ -757,12 +758,11 @@
                                                                                             17</a></td>
                                                                                     <td
                                                                                         class="release  has-thumb free-chap">
-                                                                                        <a href="/manga/manga-17-2/chapter-4/"
+                                                                                        <a href="#"
                                                                                             title="Manga 17 - Chapter 4">Chapter
                                                                                             4</a>
                                                                                     </td>
-                                                                                    <td class="author"><a
-                                                                                            href="/manga-author/the-author/"
+                                                                                    <td class="author"><a href="#"
                                                                                             rel="tag">The Author</a>
                                                                                     </td>
                                                                                     <td class="time"> <span
@@ -774,7 +774,7 @@
                                                                                             class="post-on font-meta type">
                                                                                             Video </span>
                                                                                     </td>
-                                                                                </tr>
+                                                                                </tr> --}}
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -869,20 +869,69 @@
     <script type="text/javascript" src="/wp-content/themes/madara/js/lightbox.min.js" id="lightbox-js"></script>
     <script type="text/javascript" src="/wp-content/themes/madara/js/core.js" id="madara-core-js"></script>
     <script type="text/javascript" src="/wp-content/themes/madara/js/smoothscroll.js" id="smoothscroll-js"></script>
-    <script type="text/javascript" src="/wp-content/themes/madara/js/lazysizes/lazysizes.min.js"
-        id="lazysizes-js"></script>
+    <script type="text/javascript" src="/wp-content/themes/madara/js/lazysizes/lazysizes.min.js" id="lazysizes-js">
+    </script>
     <script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js" id="imagesloaded-js"></script>
     <script type="text/javascript" src="/wp-content/themes/madara/js/aos.js" id="aos-js"></script>
     <script type="text/javascript" src="/wp-content/themes/madara/js/ajax.js" id="madara-ajax-js"></script>
 
-    <script type="text/javascript" src="/wp-content/plugins/madara-core/assets/js/login.js"
-        id="wp-manga-login-ajax-js"></script>
+    <script type="text/javascript" src="/wp-content/plugins/madara-core/assets/js/login.js" id="wp-manga-login-ajax-js">
+    </script>
     <script type="text/javascript" src="/wp-content/plugins/madara-core/assets/slick/slick.min.js"
         id="wp-manga-slick-js-js"></script>
     <script type="text/javascript" src="/wp-content/themes/madara/js/slick/slick.min.js" id="slick-js"></script>
     <script type="text/javascript" src="/wp-content/plugins/madara-shortcodes/shortcodes/js/ct-shortcodes.js"
         id="ct-shortcode-js-js"></script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function reqListener() {
+                // Parse JSON response
+                const responseArray = JSON.parse(this.responseText);
+                console.log(responseArray['ongoing']);
+                
+                // Loop through the array and append each item to the list
+                responseArray['ongoing'].forEach(item => {
+                    const imageUrl = 'https://img.otruyenapi.com/uploads/comics/' + item.thumb_url;
+                    item.chaptersLatest.forEach(chapter=>{
+                        $("#row_recent").append(`
+                            <tr>
+                                <td class="thumb"><a href="#"
+                                        title="Manga 17"><img
+                                            loading="lazy"
+                                            decoding="async"
+                                            width="75" height="106"
+                                            src="${imageUrl}"
+                                            class="attachment-manga_wg_post_1 size-manga_wg_post_1 wp-post-image"
+                                            alt="" /></a></td>
+                                <td class="title"><a
+                                        href="#"
+                                        title="${item.name}">${item.name}</a></td>
+                                <td
+                                    class="release  has-thumb free-chap">
+                                    <a href="#"
+                                        title="Chapter ${chapter.chapter_name}">Chapter ${chapter.chapter_name}</a>
+                                </td>
+                                <td class="time"> <span
+                                        class="post-on font-meta">
+                                        ${item.updatedAt} </span>
+                                    <span style="font-weight: 900;">
+                                        • </span>
+                                    <span
+                                        class="post-on font-meta type">
+                                        Video </span>
+                                </td>
+                            </tr>
+                        `); 
+                    })
+                  
+                    
+                });
+                }
+        const req = new XMLHttpRequest();
+        req.addEventListener("load", reqListener);
+        req.open("GET", "/api/home");
+        req.send(); 
+    </script>
 </body>
 
 </html>
