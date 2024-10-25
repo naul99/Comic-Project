@@ -79,10 +79,10 @@
     <script type="text/javascript" src="/wp-includes/js/jquery/ui/core.min.js" id="jquery-ui-core-js"></script>
     <script type="text/javascript" src="/wp-includes/js/jquery/ui/menu.min.js" id="jquery-ui-menu-js"></script>
     <script type="text/javascript" src="/wp-includes/js/dist/dom-ready.min.js" id="wp-dom-ready-js"></script>
-    <script type="text/javascript" src="/wp-includes/js/dist/hooks.min.js" id="wp-hooks-js"></script>
-    <script type="text/javascript" src="/wp-includes/js/dist/i18n.min.js" id="wp-i18n-js"></script>
+    {{-- <script type="text/javascript" src="/wp-includes/js/dist/hooks.min.js" id="wp-hooks-js"></script> --}}
+    {{-- <script type="text/javascript" src="/wp-includes/js/dist/i18n.min.js" id="wp-i18n-js"></script> --}}
 
-    <script type="text/javascript" src="/wp-includes/js/dist/a11y.min.js" id="wp-a11y-js"></script>
+    {{-- <script type="text/javascript" src="/wp-includes/js/dist/a11y.min.js" id="wp-a11y-js"></script> --}}
     <script type="text/javascript" src="/wp-includes/js/jquery/ui/autocomplete.min.js" id="jquery-ui-autocomplete-js">
     </script>
 
@@ -739,44 +739,19 @@
                                                             <!-- Tab panes -->
                                                             <div class="tab-content-wrap">
                                                                 <div role="tabpanel" class="c-tabs-item">
-                                                                    <div class="page-content-listing item-chapters">
+                                                                    <div
+                                                                        class="page-content-listing item-chapters slick-initialized slick-slider slick-dotted">
+                                                                        <a href="#" class="btn-left" data-page="0"><i
+                                                                                class="fas fa-chevron-left slick-arrow"></i></a>
                                                                         <table
                                                                             class="manga-shortcodes manga-chapters-listing">
                                                                             <tbody id="row_recent">
-                                                                                {{-- <tr>
-                                                                                    <td class="thumb"><a href="#"
-                                                                                            title="Manga 17"><img
-                                                                                                loading="lazy"
-                                                                                                decoding="async"
-                                                                                                width="75" height="106"
-                                                                                                src="/wp-content/uploads/images/thumb-4-249-75x106.jpg"
-                                                                                                class="attachment-manga_wg_post_1 size-manga_wg_post_1 wp-post-image"
-                                                                                                alt="" /></a></td>
-                                                                                    <td class="title"><a
-                                                                                            href="/manga/manga-17-2/"
-                                                                                            title="Manga 17">Manga
-                                                                                            17</a></td>
-                                                                                    <td
-                                                                                        class="release  has-thumb free-chap">
-                                                                                        <a href="#"
-                                                                                            title="Manga 17 - Chapter 4">Chapter
-                                                                                            4</a>
-                                                                                    </td>
-                                                                                    <td class="author"><a href="#"
-                                                                                            rel="tag">The Author</a>
-                                                                                    </td>
-                                                                                    <td class="time"> <span
-                                                                                            class="post-on font-meta">
-                                                                                            2 hours ago </span>
-                                                                                        <span style="font-weight: 900;">
-                                                                                            • </span>
-                                                                                        <span
-                                                                                            class="post-on font-meta type">
-                                                                                            Video </span>
-                                                                                    </td>
-                                                                                </tr> --}}
+
                                                                             </tbody>
                                                                         </table>
+                                                                        <a href="#" class="btn-right" data-page="2"><i
+                                                                                class="fas fa-chevron-right slick-arrow"></i></a>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -814,14 +789,8 @@
                                                 <div class="widget-content">
                                                     <div class="genres__collapse" style="display:block;">
                                                         <div class="row genres">
-                                                            <ul class="list-unstyled">
-                                                                <li class="col-xs-6 col-sm-4 col-md-3 col-lg-2 col-6">
-                                                                    <a href="/manga-genre/action/">
-                                                                        action <span class="count">
-                                                                            (37)
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
+                                                            <ul id="genre" class="list-unstyled">
+
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -884,54 +853,194 @@
         id="ct-shortcode-js-js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function reqListener() {
-                // Parse JSON response
-                const responseArray = JSON.parse(this.responseText);
-                console.log(responseArray['ongoing']);
-                
-                // Loop through the array and append each item to the list
+        function timeAgo(timestamp) {
+            const now = new Date();
+            const past = new Date(timestamp);
+            const secondsAgo = Math.floor((now - past) / 1000);
+
+            if (secondsAgo < 60) return `${secondsAgo} giây trước`;
+            const minutesAgo = Math.floor(secondsAgo / 60);
+            if (minutesAgo < 60) return `${minutesAgo} phút trước`;
+            const hoursAgo = Math.floor(minutesAgo / 60);
+            if (hoursAgo < 24) return `${hoursAgo} giờ trước`;
+            const daysAgo = Math.floor(hoursAgo / 24);
+            if (daysAgo < 30) return `${daysAgo} ngày trước`;
+            const monthsAgo = Math.floor(daysAgo / 30);
+            if (monthsAgo < 12) return `${monthsAgo} tháng trước`;
+            const yearsAgo = Math.floor(daysAgo / 365);
+            return `${yearsAgo} năm trước`;
+        }
+        async function fetchAndRenderData() {
+            
+            try {
+                const response = await fetch("/api/home");
+                const responseArray = await response.json();
+
+                const fragment = document.createDocumentFragment();
+            
                 responseArray['ongoing'].forEach(item => {
+                    if (item.chaptersLatest != null) {
                     const imageUrl = 'https://img.otruyenapi.com/uploads/comics/' + item.thumb_url;
-                    item.chaptersLatest.forEach(chapter=>{
-                        $("#row_recent").append(`
-                            <tr>
-                                <td class="thumb"><a href="#"
-                                        title="Manga 17"><img
-                                            loading="lazy"
-                                            decoding="async"
-                                            width="75" height="106"
-                                            src="${imageUrl}"
-                                            class="attachment-manga_wg_post_1 size-manga_wg_post_1 wp-post-image"
-                                            alt="" /></a></td>
-                                <td class="title"><a
-                                        href="#"
-                                        title="${item.name}">${item.name}</a></td>
-                                <td
-                                    class="release  has-thumb free-chap">
-                                    <a href="#"
-                                        title="Chapter ${chapter.chapter_name}">Chapter ${chapter.chapter_name}</a>
-                                </td>
-                                <td class="time"> <span
-                                        class="post-on font-meta">
-                                        ${item.updatedAt} </span>
-                                    <span style="font-weight: 900;">
-                                        • </span>
-                                    <span
-                                        class="post-on font-meta type">
-                                        Video </span>
-                                </td>
-                            </tr>
-                        `); 
-                    })
-                  
-                    
+                    const row = document.createElement("tr");
+
+                    row.innerHTML = `
+                        <td class="thumb">
+                            <a href="#" title="Manga 17">
+                                <img loading="lazy" decoding="async" width="75" height="106" src="${imageUrl}" 
+                                    class="attachment-manga_wg_post_1 size-manga_wg_post_1 wp-post-image" alt="" />
+                            </a>
+                        </td>
+                        <td class="title">
+                            <a href="#" title="${item.name}">${item.name}</a>
+                        </td>
+                        <td class="release has-thumb free-chap">
+                            <a href="#" title="Chapter ${item.chaptersLatest[0].chapter_name}">
+                                Chapter ${item.chaptersLatest[0].chapter_name}
+                            </a>
+                        </td>
+                        <td class="time">
+                            <span class="post-on font-meta">${timeAgo(item.updatedAt)}</span>
+                            <span style="font-weight: 900;">•</span>
+                            <span class="post-on font-meta type">Truyện</span>
+                        </td>
+                    `;
+                    fragment.appendChild(row);
+                    }
                 });
+                
+                document.getElementById("row_recent").appendChild(fragment);
+                
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }   
+
+    fetchAndRenderData();
+    async function genre() {
+            try {
+                const response = await fetch("/api/genre");
+                const responseArray = await response.json();
+                
+                const fragment = document.createDocumentFragment();
+            
+                responseArray['genre'].forEach(item => {
+                    const row = document.createElement("li");
+                    row.classList.add("col-xs-6", "col-sm-4", "col-md-3", "col-lg-2", "col-6");
+                    row.innerHTML = `
+                            <a href="#">
+                                ${item.name}
+                            </a>
+                    `;
+                    fragment.appendChild(row);
+                });
+                
+                document.getElementById("genre").appendChild(fragment);
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }   
+
+        genre();
+        async function loadContent(page) {
+            try {
+           
+            const response = await fetch(`/api/paginate?page=${page}`);
+            const data = await response.json();
+            console.log(data);
+            
+            // Clear current content
+           
+           
+            const fragment = document.createDocumentFragment();
+            
+            data['ongoing'].forEach(item => {
+                if (item.chaptersLatest != null) {
+                
+                const imageUrl = 'https://img.otruyenapi.com/uploads/comics/' + item.thumb_url;
+                const row = document.createElement("tr");
+
+                row.innerHTML = `
+                    <td class="thumb">
+                        <a href="#" title="Manga 17">
+                            <img loading="lazy" decoding="async" width="75" height="106" src="${imageUrl}" 
+                                class="attachment-manga_wg_post_1 size-manga_wg_post_1 wp-post-image" alt="" />
+                        </a>
+                    </td>
+                    <td class="title">
+                        <a href="#" title="${item.name}">${item.name}</a>
+                    </td>
+                    <td class="release has-thumb free-chap">
+                        <a href="#" title="Chapter ${item.chaptersLatest[0].chapter_name}">
+                            Chapter ${item.chaptersLatest[0].chapter_name}
+                        </a>
+                    </td>
+                    <td class="time">
+                        <span class="post-on font-meta">${timeAgo(item.updatedAt)}</span>
+                        <span style="font-weight: 900;">•</span>
+                        <span class="post-on font-meta type">Truyện</span>
+                    </td>
+                `;
+                fragment.appendChild(row);
                 }
-        const req = new XMLHttpRequest();
-        req.addEventListener("load", reqListener);
-        req.open("GET", "/api/home");
-        req.send(); 
+            });
+            
+            document.getElementById("row_recent").appendChild(fragment);
+           
+            } catch (error) {
+            console.error('Error loading content:', error);
+            }
+        }
+
+        // Handle click events on links
+        document.querySelectorAll('.btn-right').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent full page reload
+                const contentDiv = document.getElementById('row_recent');
+                contentDiv.innerHTML = '';
+                
+                const page = this.getAttribute('data-page');
+                const btnLeft = document.querySelector('.btn-left');
+
+                // Lấy giá trị của 'data-page' và chuyển thành số nguyên
+                const pages = parseInt(btnLeft.setAttribute('data-page',page));
+
+               
+                
+                let position = parseInt(this.getAttribute('data-page'));
+                position += 1;
+                this.setAttribute('data-page', position);
+                
+                loadContent(page);
+                
+            });
+        });
+        document.querySelectorAll('.btn-left').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent full page reload
+                const page = this.getAttribute('data-page');
+                if (page == 0) {
+                    return false;
+                }
+                const btnRight = document.querySelector('.btn-right');
+
+                
+                const pages = parseInt(btnRight.setAttribute('data-page',page));
+                let position = parseInt(this.getAttribute('data-page'));
+
+                position -= 1;
+                this.setAttribute('data-page', position);
+                const contentDiv = document.getElementById('row_recent');
+                contentDiv.innerHTML = '';
+                
+                loadContent(page); // Load content via AJAX
+                
+            });
+        });
+
+
     </script>
+
 </body>
 
 </html>
