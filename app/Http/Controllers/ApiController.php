@@ -35,7 +35,7 @@ class ApiController extends Controller
         }
         else{
             foreach($data['data']['items'] as $comic){
-               if($comic['status'] == 'ongoing'){
+               if($comic['status'] == 'ongoing' && $comic['chaptersLatest'] != null){
                 $comic_ongoing[] = $comic; 
                }
             }
@@ -48,15 +48,16 @@ class ApiController extends Controller
         
     }
     public function genre(){
-        $data = Http::get("https://otruyen.cc/api/navbar");
+        $data = Http::get("https://otruyenapi.com/v1/api/the-loai");
         if($data['status'] != 'success'){
             return response()->json(['status'=> 'error','message'=> 'Error from server otruyen.com']);
         }
         else{
             return response()->json([
                 'code'=>200,
-                'genre'=>$data['data']['categories'],
+                'genre'=>$data['data']['items'],
             ]);
         }
     }
+   
 }

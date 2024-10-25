@@ -37,13 +37,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel='stylesheet' id='wp-block-library-css' href='/wp-includes/css/dist/block-library/style.min.css'
         type='text/css' media='all' />
+    {{--
     <link rel='stylesheet' id='ct-shortcode-css'
-        href='/wp-content/plugins/madara-shortcodes/shortcodes/css/shortcodes.css' type='text/css' media='all' />
+        href='/wp-content/plugins/madara-shortcodes/shortcodes/css/shortcodes.css' type='text/css' media='all' /> --}}
+    {{--
     <link rel='stylesheet' id='chapter-coin-css-css'
-        href='/wp-content/plugins/wp-manga-chapter-coin/assets/css/chapter-coin.css' type='text/css' media='all' />
+        href='/wp-content/plugins/wp-manga-chapter-coin/assets/css/chapter-coin.css' type='text/css' media='all' /> --}}
+    {{--
     <link rel='stylesheet' id='wp-manga-chapter-thumbnail-css'
         href='/wp-content/plugins/wp-manga-chapter-thumbnail/assets/css/chapter_thumbnail.css' type='text/css'
-        media='all' />
+        media='all' /> --}}
     <link rel='stylesheet' id='bootstrap-css' href='/wp-content/themes/madara/css/bootstrap.min.css' type='text/css'
         media='all' />
     <link rel='stylesheet' id='slick-css' href='/wp-content/themes/madara/js/slick/slick.css' type='text/css'
@@ -52,25 +55,30 @@
         type='text/css' media='all' />
     <link rel='stylesheet' id='madara-css-child-css' href='/wp-content/themes/madara/style.css' type='text/css'
         media='all' />
+    {{--
     <link rel='stylesheet' id='lightbox-css' href='/wp-content/themes/madara/css/lightbox.min.css' type='text/css'
-        media='all' />
+        media='all' /> --}}
     <link rel='stylesheet' id='fontawesome-css'
         href='/wp-content/themes/madara/app/lib/fontawesome/web-fonts-with-css/css/all.min.css' type='text/css'
         media='all' />
     <link rel='stylesheet' id='ionicons-css' href='/wp-content/themes/madara/css/fonts/ionicons/css/ionicons.min.css'
         type='text/css' media='all' />
+    {{--
     <link rel='stylesheet' id='madara-icons-css'
-        href='/wp-content/themes/madara/css/fonts/ct-icon/ct-icon.css?ver=6.6.2' type='text/css' media='all' />
+        href='/wp-content/themes/madara/css/fonts/ct-icon/ct-icon.css?ver=6.6.2' type='text/css' media='all' /> --}}
     <link rel='stylesheet' id='loaders-css' href='/wp-content/themes/madara/css/loaders.min.css' type='text/css'
         media='all' />
     <link rel='stylesheet' id='madara-css-css' href='/wp-content/themes/madara-child-x/style.css' type='text/css'
         media='all' />
+    {{--
     <link rel='stylesheet' id='mycred-front-css' href='/wp-content/plugins/mycred/assets/css/mycred-front.css'
-        type='text/css' media='all' />
+        type='text/css' media='all' /> --}}
+    {{--
     <link rel='stylesheet' id='mycred-social-share-icons-css'
-        href='/wp-content/plugins/mycred/assets/css/mycred-social-icons.css' type='text/css' media='all' />
+        href='/wp-content/plugins/mycred/assets/css/mycred-social-icons.css' type='text/css' media='all' /> --}}
+    {{--
     <link rel='stylesheet' id='mycred-social-share-style-css'
-        href='/wp-content/plugins/mycred/assets/css/mycred-social-share.css' type='text/css' media='all' />
+        href='/wp-content/plugins/mycred/assets/css/mycred-social-share.css' type='text/css' media='all' /> --}}
     <!--End CSS-->
     <!--Start JS-->
     <script src="/wp-includes/js/wp-emoji-release.min.js"></script>
@@ -95,8 +103,8 @@
     <script type="text/javascript" src="/wp-content/themes/madara/js/template.js" id="madara-js-js"></script>
     <script type="text/javascript" src="/wp-content/themes/madara-child-x/assets/js/child.js" id="madara-child-js-js">
     </script>
-    <script type="text/javascript" src="/wp-content/plugins/mycred/addons/badges/assets/js/front.js"
-        id="mycred-badge-front-js"></script>
+    {{-- <script type="text/javascript" src="/wp-content/plugins/mycred/addons/badges/assets/js/front.js"
+        id="mycred-badge-front-js"></script> --}}
     <!--End JS-->
 </head>
 
@@ -274,45 +282,38 @@
                                                         data-style="style-2" data-count="3">
 
                                                         <div class="slider__container" role="toolbar">
-
+                                                            @foreach($list_comic_new as $comic)
                                                             <div class="slider__item ">
-
                                                                 <div class="slider__thumb">
                                                                     <div class="slider__thumb_item">
                                                                         <a href="/manga/manga-17-2/">
                                                                             <img fetchpriority="high" decoding="async"
-                                                                                width="450" height="450"
-                                                                                src="/wp-content/uploads/images/thumb-4-249-450x450.jpg"
+                                                                                style="height: 500px;"
+                                                                                src="https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }}"
                                                                                 class="attachment-madara_x_slider_2 size-madara_x_slider_2 wp-post-image"
                                                                                 alt=""
-                                                                                srcset="/wp-content/uploads/images/thumb-4-249-450x450.jpg 450w, /wp-content/uploads/images/thumb-4-249-150x150.jpg 150w"
+                                                                                srcset="https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }} 450w, https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }} 150w"
                                                                                 sizes="(max-width: 450px) 100vw, 450px" />
                                                                             <div class="slider-overlay"></div>
                                                                         </a>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="slider__content">
                                                                     <div class="slider__content_item">
                                                                         <div class="post-title font-title">
                                                                             <h4>
-                                                                                <span
-                                                                                    class="manga-title-badges custom trending">trending</span>
-                                                                                <a href="/manga/manga-17-2/">
-                                                                                    Manga 17 </a>
+                                                                                
+                                                                                <a href="#">
+                                                                                    {{ $comic['name'] }} </a>
                                                                                 <span class="manga-genres">
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i><a
-                                                                                            href="/manga-genre/action/"
-                                                                                            rel="tag">action</a></span>
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/adventure/"
-                                                                                            rel="tag">adventure</a></span><span
-                                                                                        class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/boys/"
-                                                                                            rel="tag">boys</a></span>
+                                                                                    @foreach(collect($comic['category'])->take(3) as $genre)
+                                                                                    <span class="genre-item">
+                                                                                        
+                                                                                        <i class="fas fa-circle"></i><a
+                                                                                            href="#"
+                                                                                            rel="tag">{{ $genre['name'] }}</a>
+                                                                                    </span>
+                                                                                  @endforeach
                                                                                 </span>
                                                                             </h4>
                                                                         </div>
@@ -323,149 +324,9 @@
                                                                     <span class="manga-chapter-type">Video</span>
                                                                 </div>
                                                             </div>
+                                                            @endforeach
 
-                                                            <div class="slider__item ">
 
-                                                                <div class="slider__thumb">
-                                                                    <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-13-2/">
-                                                                            <img loading="lazy" decoding="async"
-                                                                                width="450" height="450"
-                                                                                src="/wp-content/uploads/images/thumb-3-237-450x450.jpg"
-                                                                                class="attachment-madara_x_slider_2 size-madara_x_slider_2 wp-post-image"
-                                                                                alt=""
-                                                                                srcset="/wp-content/uploads/images/thumb-3-237-450x450.jpg 450w, /wp-content/uploads/images/thumb-3-237-150x150.jpg 150w"
-                                                                                sizes="(max-width: 450px) 100vw, 450px" />
-                                                                            <div class="slider-overlay"></div>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__content">
-                                                                    <div class="slider__content_item">
-                                                                        <div class="post-title font-title">
-                                                                            <h4>
-                                                                                <span
-                                                                                    class="manga-title-badges hot">HOT</span>
-                                                                                <a href="/manga/manga-13-2/">
-                                                                                    Manga 13 </a>
-                                                                                <span class="manga-genres">
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i><a
-                                                                                            href="/manga-genre/action/"
-                                                                                            rel="tag">action</a></span>
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/adventure/"
-                                                                                            rel="tag">adventure</a></span><span
-                                                                                        class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/boys/"
-                                                                                            rel="tag">boys</a></span>
-                                                                                </span>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="slider__item ">
-
-                                                                <div class="slider__thumb">
-                                                                    <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-13-2/">
-                                                                            <img loading="lazy" decoding="async"
-                                                                                width="450" height="450"
-                                                                                src="/wp-content/uploads/images/thumb-3-237-450x450.jpg"
-                                                                                class="attachment-madara_x_slider_2 size-madara_x_slider_2 wp-post-image"
-                                                                                alt=""
-                                                                                srcset="/wp-content/uploads/images/thumb-3-237-450x450.jpg 450w, /wp-content/uploads/images/thumb-3-237-150x150.jpg 150w"
-                                                                                sizes="(max-width: 450px) 100vw, 450px" />
-                                                                            <div class="slider-overlay"></div>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__content">
-                                                                    <div class="slider__content_item">
-                                                                        <div class="post-title font-title">
-                                                                            <h4>
-
-                                                                                <a href="/manga/manga-13-2/">
-                                                                                    Manga 13 </a>
-                                                                                <span class="manga-genres">
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i><a
-                                                                                            href="/manga-genre/action/"
-                                                                                            rel="tag">action</a></span>
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/adventure/"
-                                                                                            rel="tag">adventure</a></span><span
-                                                                                        class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/boys/"
-                                                                                            rel="tag">boys</a></span>
-                                                                                </span>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="slider__item ">
-
-                                                                <div class="slider__thumb">
-                                                                    <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-13-2/">
-                                                                            <img loading="lazy" decoding="async"
-                                                                                width="450" height="450"
-                                                                                src="/wp-content/uploads/images/thumb-3-237-450x450.jpg"
-                                                                                class="attachment-madara_x_slider_2 size-madara_x_slider_2 wp-post-image"
-                                                                                alt=""
-                                                                                srcset="/wp-content/uploads/images/thumb-3-237-450x450.jpg 450w, /wp-content/uploads/images/thumb-3-237-150x150.jpg 150w"
-                                                                                sizes="(max-width: 450px) 100vw, 450px" />
-                                                                            <div class="slider-overlay"></div>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__content">
-                                                                    <div class="slider__content_item">
-                                                                        <div class="post-title font-title">
-                                                                            <h4>
-
-                                                                                <a href="/manga/manga-13-2/">
-                                                                                    Manga 13 </a>
-                                                                                <span class="manga-genres">
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i><a
-                                                                                            href="/manga-genre/action/"
-                                                                                            rel="tag">action</a></span>
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/adventure/"
-                                                                                            rel="tag">adventure</a></span><span
-                                                                                        class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/boys/"
-                                                                                            rel="tag">boys</a></span>
-                                                                                </span>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
 
@@ -474,7 +335,7 @@
 
 
                                                     <div class="x-heading">
-                                                        <h2>Slider</h2>
+                                                        <h2>Adult</h2>
                                                         <div class="sub-links"><a href="/manga/">See All</a><a href="">
                                                                 | </a></div>
                                                     </div>
@@ -484,136 +345,37 @@
                                                     <div id="c-post-slider-100" class="manga-slider style-1 no-padding"
                                                         data-style="style-1" data-count="5">
 
-                                                        <div class="slider__container_custom" role="toolbar">
-
-
+                                                        <div class="slider__container_custom"
+                                                            role="toolbar">
+                                                            @foreach($list_comic as $comic)
                                                             <div class="slider__item ">
-
                                                                 <div class="slider__thumb">
-                                                                    <span
-                                                                        class="manga-title-badges custom trending">trending</span>
+                                                                    {{-- <span
+                                                                        class="manga-title-badges custom trending">trending</span> --}}
                                                                     <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-17-2/">
+                                                                        <a href="#">
                                                                             <img loading="lazy" decoding="async"
-                                                                                width="250" height="500"
-                                                                                src="/wp-content/uploads/images/thumb-4-249-250x500.jpg"
+                                                                                style="height: 300px;"
+                                                                                src="https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }}"
                                                                                 class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image"
                                                                                 alt="" />
                                                                             <div class="slider-overlay"></div>
                                                                         </a>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="slider__content">
                                                                     <div class="slider__content_item">
                                                                         <div class="post-title font-title">
                                                                             <h4>
-                                                                                <a href="/manga/manga-17-2/">
-                                                                                    Manga 17 </a>
+                                                                                <a href="#">
+                                                                                   {{$comic['name']}} </a>
                                                                             </h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
                                                             </div>
-
-
-                                                            <div class="slider__item ">
-
-                                                                <div class="slider__thumb">
-                                                                    <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-16-2/">
-                                                                            <img loading="lazy" decoding="async"
-                                                                                width="250" height="500"
-                                                                                src="/wp-content/uploads/images/thumb-4-246-250x500.jpg"
-                                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image"
-                                                                                alt="" />
-                                                                            <div class="slider-overlay"></div>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__content">
-                                                                    <div class="slider__content_item">
-                                                                        <div class="post-title font-title">
-                                                                            <h4>
-                                                                                <a href="/manga/manga-16-2/">
-                                                                                    Manga 16 </a>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="slider__item ">
-
-                                                                <div class="slider__thumb">
-                                                                    <span class="manga-title-badges new">NEW</span>
-                                                                    <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-11-2/">
-                                                                            <img loading="lazy" decoding="async"
-                                                                                width="250" height="500"
-                                                                                src="/wp-content/uploads/images/thumb-5-231-250x500.jpg"
-                                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image"
-                                                                                alt="" />
-                                                                            <div class="slider-overlay"></div>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__content">
-                                                                    <div class="slider__content_item">
-                                                                        <div class="post-title font-title">
-                                                                            <h4>
-                                                                                <a href="/manga/manga-11-2/">
-                                                                                    Manga 11 </a>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="slider__item ">
-
-                                                                <div class="slider__thumb">
-                                                                    <span class="manga-title-badges hot">HOT</span>
-                                                                    <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-11-2/">
-                                                                            <img loading="lazy" decoding="async"
-                                                                                width="250" height="500"
-                                                                                src="/wp-content/uploads/images/thumb-5-231-250x500.jpg"
-                                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image"
-                                                                                alt="" />
-                                                                            <div class="slider-overlay"></div>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__content">
-                                                                    <div class="slider__content_item">
-                                                                        <div class="post-title font-title">
-                                                                            <h4>
-                                                                                <a href="/manga/manga-11-2/">
-                                                                                    Manga 11 </a>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
-                                                            </div>
+                                                            @endforeach
                                                         </div>
 
 
@@ -622,111 +384,58 @@
                                                     <div style="height:30px" aria-hidden="true" class="wp-block-spacer">
                                                     </div>
 
-
                                                     <div class="x-heading">
-                                                        <h2>Slider 2</h2>
+                                                        <h2>Anime</h2>
                                                         <div class="sub-links"><a href="/manga/">See All</a><a href="">
                                                                 | </a></div>
                                                     </div>
+                                                    <div style="height:18px" aria-hidden="true" class="wp-block-spacer">
+                                                    </div>
 
-                                                    <div id="c-post-slider-362"
-                                                        class="manga-x-slider no-full-width style-3"
-                                                        data-style="style-3" data-count="4">
+                                                    <div id="c-post-slider-100" class="manga-slider style-1 no-padding"
+                                                        data-style="style-1" data-count="5">
 
-                                                        <div class="slider__container slider-for" role="toolbar">
-
+                                                        <div class="slider__container_custom"
+                                                            role="toolbar">
+                                                            @foreach($list_comic_anime as $comic)
                                                             <div class="slider__item ">
-
                                                                 <div class="slider__thumb">
-                                                                    <span class="manga-title-badges new">NEW</span>
+                                                                    {{-- <span
+                                                                        class="manga-title-badges custom trending">trending</span> --}}
                                                                     <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-11-2/">
+                                                                        <a href="#">
                                                                             <img loading="lazy" decoding="async"
-                                                                                width="550" height="315"
-                                                                                src="/wp-content/uploads/images/thumb-5-231-550x315.jpg"
-                                                                                class="attachment-madara_x_slider_3 size-madara_x_slider_3 wp-post-image"
-                                                                                alt=""
-                                                                                srcset="/wp-content/uploads/images/thumb-5-231-550x315.jpg 550w, /wp-content/uploads/images/thumb-5-231-360x206.jpg 360w"
-                                                                                sizes="(max-width: 550px) 100vw, 550px" />
+                                                                                style="height: 300px;"
+                                                                                src="https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }}"
+                                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image"
+                                                                                alt="" />
                                                                             <div class="slider-overlay"></div>
                                                                         </a>
                                                                     </div>
                                                                 </div>
-
                                                                 <div class="slider__content">
                                                                     <div class="slider__content_item">
                                                                         <div class="post-title font-title">
                                                                             <h4>
-                                                                                <a href="/manga/manga-11-2/">
-                                                                                    Manga 11 </a>
-                                                                                <span class="manga-genres">
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i><a
-                                                                                            href="/manga-genre/action/"
-                                                                                            rel="tag">action</a></span>
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i>
-                                                                                        <a href="/manga-genre/adventure/"
-                                                                                            rel="tag">adventure</a></span>
-                                                                                </span>
+                                                                                <a href="#">
+                                                                                   {{$comic['name']}} </a>
                                                                             </h4>
                                                                         </div>
                                                                     </div>
                                                                 </div>
 
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
                                                             </div>
+                                                            @endforeach
                                                         </div>
-                                                        <div class="slider__container slider-nav">
-                                                            <div class="slider__item ">
-                                                                <div class="slider__thumb">
-                                                                    <span
-                                                                        class="manga-title-badges custom trending">trending</span>
-                                                                    <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-17-2/">
-                                                                            <img loading="lazy" decoding="async"
-                                                                                width="550" height="315"
-                                                                                src="/wp-content/uploads/images/thumb-4-249-550x315.jpg"
-                                                                                class="attachment-madara_x_slider_3 size-madara_x_slider_3 wp-post-image"
-                                                                                alt=""
-                                                                                srcset="/wp-content/uploads/images/thumb-4-249-550x315.jpg 550w, /wp-content/uploads/images/thumb-4-249-560x320.jpg 560w, /wp-content/uploads/images/thumb-4-249-360x206.jpg 360w"
-                                                                                sizes="(max-width: 550px) 100vw, 550px" />
-                                                                            <div class="slider-overlay"></div>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
 
-                                                                <div class="slider__content">
-                                                                    <div class="slider__content_item">
-                                                                        <div class="post-title font-title">
-                                                                            <h4>
-                                                                                <a href="/manga/manga-17-2/">
-                                                                                    Manga 17 </a>
-                                                                                <span class="manga-genres">
-                                                                                    <span class="genre-item"><i
-                                                                                            class="fas fa-circle"></i><a
-                                                                                            href="/manga-genre/action/"
-                                                                                            rel="tag">action</a></span>
-                                                                                </span>
-                                                                            </h4>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
                                                     </div>
 
-                                                    <div style="height:0px" aria-hidden="true" class="wp-block-spacer">
-                                                    </div>
                                                     <div style="height:30px" aria-hidden="true" class="wp-block-spacer">
                                                     </div>
+
+
+                                                    
                                                     <div class="x-heading">
                                                         <h2>Latest Releases</h2>
                                                         <div class="sub-links"><a href="">See All</a><a href=""> | </a>
@@ -842,16 +551,19 @@
     </script>
     <script type="text/javascript" src="/wp-includes/js/imagesloaded.min.js" id="imagesloaded-js"></script>
     <script type="text/javascript" src="/wp-content/themes/madara/js/aos.js" id="aos-js"></script>
-    <script type="text/javascript" src="/wp-content/themes/madara/js/ajax.js" id="madara-ajax-js"></script>
+    {{-- <script type="text/javascript" src="/wp-content/themes/madara/js/ajax.js" id="madara-ajax-js"></script> --}}
 
-    <script type="text/javascript" src="/wp-content/plugins/madara-core/assets/js/login.js" id="wp-manga-login-ajax-js">
-    </script>
+    {{-- <script type="text/javascript" src="/wp-content/plugins/madara-core/assets/js/login.js"
+        id="wp-manga-login-ajax-js">
+    </script> --}}
     <script type="text/javascript" src="/wp-content/plugins/madara-core/assets/slick/slick.min.js"
         id="wp-manga-slick-js-js"></script>
     <script type="text/javascript" src="/wp-content/themes/madara/js/slick/slick.min.js" id="slick-js"></script>
     <script type="text/javascript" src="/wp-content/plugins/madara-shortcodes/shortcodes/js/ct-shortcodes.js"
         id="ct-shortcode-js-js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
     <script>
         function timeAgo(timestamp) {
             const now = new Date();
@@ -965,7 +677,7 @@
             fragment.appendChild(numberPage);
             document.getElementById("numberPage").appendChild(fragment);
             data['ongoing'].forEach(item => {
-                if (item.chaptersLatest != null) {
+               
                 
                 const imageUrl = 'https://img.otruyenapi.com/uploads/comics/' + item.thumb_url;
                 const row = document.createElement("tr");
@@ -992,7 +704,7 @@
                     </td>
                 `;
                 fragment.appendChild(row);
-                }
+                
             });
             
             document.getElementById("row_recent").appendChild(fragment);
