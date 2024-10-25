@@ -751,7 +751,7 @@
                                                                         </table>
                                                                         <a href="#" class="btn-right" data-page="2"><i
                                                                                 class="fas fa-chevron-right slick-arrow"></i></a>
-
+                                                                        <div id="numberPage"></div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -947,13 +947,23 @@
            
             const response = await fetch(`/api/paginate?page=${page}`);
             const data = await response.json();
-            console.log(data);
+
+           
+            console.log(data['page']);
             
             // Clear current content
            
-           
+            const contentPage = document.getElementById('numberPage');
+            contentPage.innerHTML = '';
             const fragment = document.createDocumentFragment();
-            
+            const numberPage = document.createElement('ul');
+
+            numberPage.classList.add('slick-dots');
+            numberPage.innerHTML=`
+                 <li class="slick-active" style="width: auto">${data['page']}</li>
+            `;
+            fragment.appendChild(numberPage);
+            document.getElementById("numberPage").appendChild(fragment);
             data['ongoing'].forEach(item => {
                 if (item.chaptersLatest != null) {
                 
@@ -1003,7 +1013,7 @@
                 const btnLeft = document.querySelector('.btn-left');
 
                 // Lấy giá trị của 'data-page' và chuyển thành số nguyên
-                const pages = parseInt(btnLeft.setAttribute('data-page',page));
+                const pages = parseInt(btnLeft.setAttribute('data-page',page - 1));
 
                
                 
@@ -1023,9 +1033,11 @@
                     return false;
                 }
                 const btnRight = document.querySelector('.btn-right');
-
+              
                 
-                const pages = parseInt(btnRight.setAttribute('data-page',page));
+                const pages = parseInt(btnRight.getAttribute('data-page'));
+                btnRight.setAttribute('data-page', pages - 1);
+
                 let position = parseInt(this.getAttribute('data-page'));
 
                 position -= 1;
