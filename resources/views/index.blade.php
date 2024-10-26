@@ -265,7 +265,8 @@
                 </div>
 
             </header>
-            <div class="site-content">
+            <!--Start Content-->
+            <div id="site-content" class="site-content">
 
                 <div class="c-page-content style-2">
                     <div class="content-area ">
@@ -286,7 +287,7 @@
                                                             <div class="slider__item ">
                                                                 <div class="slider__thumb">
                                                                     <div class="slider__thumb_item">
-                                                                        <a href="/manga/manga-17-2/">
+                                                                        <a href="#">
                                                                             <img fetchpriority="high" decoding="async"
                                                                                 style="height: 500px;"
                                                                                 src="https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }}"
@@ -302,18 +303,21 @@
                                                                     <div class="slider__content_item">
                                                                         <div class="post-title font-title">
                                                                             <h4>
-                                                                                
-                                                                                <a href="#">
+
+                                                                                <a class="btn-comic"
+                                                                                    href="javascrip:void(0);"
+                                                                                    data-slug="{{ $comic['slug'] }}">
                                                                                     {{ $comic['name'] }} </a>
                                                                                 <span class="manga-genres">
-                                                                                    @foreach(collect($comic['category'])->take(3) as $genre)
+                                                                                    @foreach(collect($comic['category'])->take(3)
+                                                                                    as $genre)
                                                                                     <span class="genre-item">
-                                                                                        
+
                                                                                         <i class="fas fa-circle"></i><a
-                                                                                            href="#"
-                                                                                            rel="tag">{{ $genre['name'] }}</a>
+                                                                                            href="#" rel="tag">{{
+                                                                                            $genre['name'] }}</a>
                                                                                     </span>
-                                                                                  @endforeach
+                                                                                    @endforeach
                                                                                 </span>
                                                                             </h4>
                                                                         </div>
@@ -345,13 +349,13 @@
                                                     <div id="c-post-slider-100" class="manga-slider style-1 no-padding"
                                                         data-style="style-1" data-count="5">
 
-                                                        <div class="slider__container_custom"
-                                                            role="toolbar">
+                                                        <div class="slider__container_custom" role="toolbar">
                                                             @foreach($list_comic as $comic)
                                                             <div class="slider__item ">
                                                                 <div class="slider__thumb">
                                                                     {{-- <span
-                                                                        class="manga-title-badges custom trending">trending</span> --}}
+                                                                        class="manga-title-badges custom trending">trending</span>
+                                                                    --}}
                                                                     <div class="slider__thumb_item">
                                                                         <a href="#">
                                                                             <img loading="lazy" decoding="async"
@@ -368,7 +372,7 @@
                                                                         <div class="post-title font-title">
                                                                             <h4>
                                                                                 <a href="#">
-                                                                                   {{$comic['name']}} </a>
+                                                                                    {{$comic['name']}} </a>
                                                                             </h4>
                                                                         </div>
                                                                     </div>
@@ -395,13 +399,13 @@
                                                     <div id="c-post-slider-100" class="manga-slider style-1 no-padding"
                                                         data-style="style-1" data-count="5">
 
-                                                        <div class="slider__container_custom"
-                                                            role="toolbar">
+                                                        <div class="slider__container_custom" role="toolbar">
                                                             @foreach($list_comic_anime as $comic)
                                                             <div class="slider__item ">
                                                                 <div class="slider__thumb">
                                                                     {{-- <span
-                                                                        class="manga-title-badges custom trending">trending</span> --}}
+                                                                        class="manga-title-badges custom trending">trending</span>
+                                                                    --}}
                                                                     <div class="slider__thumb_item">
                                                                         <a href="#">
                                                                             <img loading="lazy" decoding="async"
@@ -418,7 +422,7 @@
                                                                         <div class="post-title font-title">
                                                                             <h4>
                                                                                 <a href="#">
-                                                                                   {{$comic['name']}} </a>
+                                                                                    {{$comic['name']}} </a>
                                                                             </h4>
                                                                         </div>
                                                                     </div>
@@ -435,10 +439,10 @@
                                                     </div>
 
 
-                                                    
+
                                                     <div class="x-heading">
-                                                        <h2>Latest Releases</h2>
-                                                        <div class="sub-links"><a href="">See All</a><a href=""> | </a>
+                                                        <h2>Hoàn Thành</h2>
+                                                        <div class="sub-links"><a href="">See All</a><a href="#"> | </a>
                                                         </div>
                                                     </div>
                                                     <div style="height:0px" aria-hidden="true" class="wp-block-spacer">
@@ -481,6 +485,7 @@
 
 
             </div>
+            <!--End Content-->
             <!-- <div class="site-content"> -->
             <footer class="site-footer">
                 <div class="c-footer-sidebar">
@@ -561,9 +566,26 @@
     <script type="text/javascript" src="/wp-content/themes/madara/js/slick/slick.min.js" id="slick-js"></script>
     <script type="text/javascript" src="/wp-content/plugins/madara-shortcodes/shortcodes/js/ct-shortcodes.js"
         id="ct-shortcode-js-js"></script>
+    <script>
+        async function comic_detail(slug) {  
+           const comic = await fetch('/api/comic/'+slug);
+              const responseArray = await comic.json();
+              console.log(responseArray);
+              const contentDetail = document.getElementById('site-content');
+              contentDetail.innerHTML = '';
 
+        }
+        document.querySelectorAll('.btn-comic').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const slug = this.getAttribute('data-slug');
+                comic_detail(slug);
+                
+            });
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   
+
     <script>
         function timeAgo(timestamp) {
             const now = new Date();
@@ -661,7 +683,7 @@
             const data = await response.json();
 
            
-            console.log(data['page']);
+            // console.log(data['page']);
             
             // Clear current content
            
@@ -762,7 +784,9 @@
             });
         });
 
-
+        
+    
+       
     </script>
 
 </body>

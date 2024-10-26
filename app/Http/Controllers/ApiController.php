@@ -7,35 +7,31 @@ use Http;
 class ApiController extends Controller
 {
     public function api_index(){
-        $data = Http::get("https://otruyenapi.com/v1/api/danh-sach/truyen-moi");
+        $data = Http::get("https://otruyenapi.com/v1/api/danh-sach/hoan-thanh");
         if($data['status'] != 'success'){
-            return response()->json(['status'=> 'error','message'=> 'Error from server otruyen.com']);
+            return response()->json(['status'=> 'error','message'=> 'Error from server otruyen.cc']);
         }
         else{
             foreach($data['data']['items'] as $comic){
-               if($comic['status'] == 'ongoing'){
-                $comic_ongoing[] = $comic; 
-               }
-            //    elseif($comic['status'] == 'coming_soon'){
-            //     $comic_coming_soon[] = $comic; 
-            //    }
+                if($comic['chaptersLatest'] != null){
+                    $comic_ongoing[] = $comic; 
+                }
             }
             return response()->json([
                 'code'=>200,
                 'ongoing'=>$comic_ongoing,
-                // 'coming_soon'=>$comic_coming_soon,
             ]);
         }
         
     }
     public function api_index_paginate (){
-        $data = Http::get("https://otruyenapi.com/v1/api/danh-sach/truyen-moi?page=".$_GET['page']);
+        $data = Http::get("https://otruyenapi.com/v1/api/danh-sach/hoan-thanh?page=".$_GET['page']);
         if($data['status'] != 'success'){
             return response()->json(['status'=> 'error','message'=> 'Error from server otruyen.com']);
         }
         else{
             foreach($data['data']['items'] as $comic){
-               if($comic['status'] == 'ongoing' && $comic['chaptersLatest'] != null){
+               if($comic['chaptersLatest'] != null){
                 $comic_ongoing[] = $comic; 
                }
             }
@@ -58,6 +54,13 @@ class ApiController extends Controller
                 'genre'=>$data['data']['items'],
             ]);
         }
+    }
+    public function detail($slug){
+        $data = Http::get("https://otruyenapi.com/v1/api/truyen-tranh/".$slug);
+        return response()->json([
+            "code"=> 200,
+            'detail' => $data['data'],
+        ]);
     }
    
 }

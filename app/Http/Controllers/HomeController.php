@@ -22,7 +22,7 @@ class HomeController extends Controller
                 $list_comic_new[]= $comic;
                 $count++;
         
-                if ($count >= 5) {
+                if ($count >= 10) {
                     break;
                 }
             }
@@ -36,6 +36,9 @@ class HomeController extends Controller
         }
         
         return view("index",compact("list_comic","list_comic_new",'list_comic_anime'));
+    }
+    public function detail(){
+        return view("detail");
     }
    
 }
