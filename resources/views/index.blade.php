@@ -267,7 +267,6 @@
             </header>
             <!--Start Content-->
             <div id="site-content" class="site-content">
-
                 <div class="c-page-content style-2">
                     <div class="content-area ">
                         <div class="container">
@@ -566,13 +565,154 @@
     <script type="text/javascript" src="/wp-content/themes/madara/js/slick/slick.min.js" id="slick-js"></script>
     <script type="text/javascript" src="/wp-content/plugins/madara-shortcodes/shortcodes/js/ct-shortcodes.js"
         id="ct-shortcode-js-js"></script>
+    
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script>
         async function comic_detail(slug) {  
            const comic = await fetch('/api/comic/'+slug);
               const responseArray = await comic.json();
-              console.log(responseArray);
+              const comic_detail = responseArray['detail']['item'];
+               const imageUrl = 'https://img.otruyenapi.com/uploads/comics/';
+              console.log(comic_detail);
               const contentDetail = document.getElementById('site-content');
-              contentDetail.innerHTML = '';
+              contentDetail.innerHTML = `
+                <div class="post-249 wp-manga type-wp-manga status-publish has-post-thumbnail hentry wp-manga-tag-tag-1 wp-manga-tag-tag-2 wp-manga-tag-tag-3 wp-manga-release-4 wp-manga-author-the-author wp-manga-artist-artist wp-manga-genre-action wp-manga-genre-adventure wp-manga-genre-boys wp-manga-genre-chinese wp-manga-genre-drama wp-manga-genre-ecchi wp-manga-genre-fighting wp-manga-genre-fun wp-manga-genre-girl wp-manga-genre-horrow wp-manga-genre-manhwa chapter-listing-1">
+                    <div class="profile-manga" style="margin-top: 35px;margin-bottom: 50px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="left col-12 col-sm-12 col-md-4">
+                                    <div class="manga-thumb">
+                                        <div class="summary_image">
+                                            <a href="#">
+                                            <img width="450" height="450"  data-src="${imageUrl}${comic_detail['thumb_url']}" data-srcset="${imageUrl}${comic_detail['thumb_url']} 450w, ${imageUrl}${comic_detail['thumb_url']} 150w" data-sizes="(max-width: 450px) 100vw, 450px" class="img-responsive lazyload effect-fade" src="/wp-content/themes/madara/images/dflazy.jpg"  style="padding-top:100%;"  alt="249"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <style>
+                                    .action-buttons{
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-between;
+                                    margin-top: 15px;
+                                    margin-bottom: 60px;
+                                    }
+                                    </style>
+                                    <div class="action-buttons">
+                                        <div class="left">
+
+                                            <div id="init-links" class="nav-links">
+                                                <a href="#" id="btn-read-last" class="c-btn c-btn_style-1">
+                                                    Xem từ đầu</a>
+                                                <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Xem cuối</a>
+                                            </div>
+
+                                           
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="right col-12 col-sm-12 col-md-8">
+                                    <div class="post-title">
+                                        <h1>${comic_detail['name']}</h1>
+                                    </div>
+                                    <div class="post-content">
+
+                                        <div class="post-content_item">
+                                            <div class="summary-content">
+                                                <div class="genres-content">
+                                                    <a href="https://live.mangabooth.com/x/manga-genre/action/" rel="tag">action</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="description-summary">
+
+                                            <div class="summary__content">
+                                                ${comic_detail['content']}
+                                            </div>
+
+                                        </div>
+
+                                        <div class="author-row">
+
+                                            <div class="post-content_item">
+                                                <div class="summary-heading">
+                                                    <h5>
+                                                        Author </h5>
+                                                </div>
+                                                <div class="summary-content">
+                                                    <div class="author-content">
+                                                        <a href="https://live.mangabooth.com/x/manga-author/the-author/" rel="tag">The Author</a> </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="ranking manga-info-row">
+                                            <div class="summary-heading">
+                                                <h5>
+                                                    Rank </h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                N/A, it has 5 monthly views </div>
+                                        </div>
+                                        <div class="rating manga-info-row">
+                                            <div class="summary-heading">
+                                                <h5>Rating</h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                <div class="post-content">
+                                                    <div class="loader-inner ball-pulse">
+                                                        <div></div>
+                                                        <div></div>
+                                                        <div></div>
+                                                    </div>
+                                                </div>
+                                                <div class="post-rating">
+                                                    <div class="post-total-rating allow_vote"><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i>
+                                                        <i
+                                                            class="ion-ios-star ratings_stars rating_current"></i><span class="score font-meta total_votes">5</span></div>
+                                                    <div class="user-rating allow_vote"><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i>
+                                                        <i
+                                                            class="ion-ios-star ratings_stars rating_current"></i><span class="score font-meta total_votes">Your Rating</span></div><input type="hidden" class="rating-post-id" value="249"> </div>
+
+                                                <div class="vote-details" vocab="https://schema.org/" typeof="AggregateRating">
+                                                    <span property="itemReviewed" typeof="Book"><span class="rate-title" property="name" title="Manga 17">Manga 17</span></span><span> <span> Average <span property="ratingValue" id="averagerate"> 5</span>                                                    / <span property="bestRating">5</span> </span>
+                                                    </span> out of <span property="ratingCount" id="countrate">1</span> </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="release-time author-row">
+
+                                            New chapter released daily </div>
+
+                                        <div class="tags-list">
+                                            <div class="post-content_item">
+                                                <div class="summary-content">
+                                                    <div class="tags-content">
+                                                        <a href="https://live.mangabooth.com/x/manga-tag/tag-1/" rel="tag">tag-1</a> <a href="https://live.mangabooth.com/x/manga-tag/tag-2/" rel="tag">tag-2</a> <a href="https://live.mangabooth.com/x/manga-tag/tag-3/"
+                                                            rel="tag">tag-3</a> </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="manga-chapters-holder" data-id="249"><i class="fas fa-spinner fa-spin fa-3x"></i></div>
+
+                                </div>
+                            </div>
+                        
+
+                        </div>
+                    </div>
+
+                </div>
+              `;
+
+             
 
         }
         document.querySelectorAll('.btn-comic').forEach(link => {
@@ -584,8 +724,6 @@
             });
         });
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script>
         function timeAgo(timestamp) {
             const now = new Date();
