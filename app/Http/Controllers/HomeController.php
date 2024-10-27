@@ -40,5 +40,8 @@ class HomeController extends Controller
     public function detail(){
         return view("detail");
     }
+    public function read(){
+        return view("read");
+    }
    
 }

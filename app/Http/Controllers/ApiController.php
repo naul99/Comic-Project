@@ -62,5 +62,33 @@ class ApiController extends Controller
             'detail' => $data['data'],
         ]);
     }
+    public function read($slug,$chapter){
+        $data = Http::get("https://otruyenapi.com/v1/api/truyen-tranh/".$slug);
+
+        if ($data->successful() && isset($data['data']['item']['chapters'][0]['server_data'])) {
+            $chapters = $data['data']['item']['chapters'][0]['server_data'];
+            $filteredChapters = array_filter($chapters, function($chap) use ($chapter) {
+                return $chap['chapter_name'] === $chapter;
+            });
+
+            if (!empty($filteredChapters)) {
+
+                $url = reset($filteredChapters)['chapter_api_data']; 
+                $data_chapter = Http::get($url);
+
+                if ($data_chapter->successful()) {
+                    return response()->json([
+                        "code" => 200,
+                        'chapter' => $data_chapter['data'],
+                    ]);
+                }
+            }
+        }
+        return response()->json([
+            "code" => 404,
+            'message' => 'Chapter not found or failed to retrieve chapter data.'
+        ]);
+
+    }
    
 }

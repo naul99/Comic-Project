@@ -37,16 +37,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel='stylesheet' id='wp-block-library-css' href='/wp-includes/css/dist/block-library/style.min.css'
         type='text/css' media='all' />
-    {{--
     <link rel='stylesheet' id='ct-shortcode-css'
-        href='/wp-content/plugins/madara-shortcodes/shortcodes/css/shortcodes.css' type='text/css' media='all' /> --}}
-    {{--
+        href='/wp-content/plugins/madara-shortcodes/shortcodes/css/shortcodes.css' type='text/css' media='all' />
     <link rel='stylesheet' id='chapter-coin-css-css'
-        href='/wp-content/plugins/wp-manga-chapter-coin/assets/css/chapter-coin.css' type='text/css' media='all' /> --}}
-    {{--
+        href='/wp-content/plugins/wp-manga-chapter-coin/assets/css/chapter-coin.css' type='text/css' media='all' /> 
+
     <link rel='stylesheet' id='wp-manga-chapter-thumbnail-css'
         href='/wp-content/plugins/wp-manga-chapter-thumbnail/assets/css/chapter_thumbnail.css' type='text/css'
-        media='all' /> --}}
+        media='all' /> 
     <link rel='stylesheet' id='bootstrap-css' href='/wp-content/themes/madara/css/bootstrap.min.css' type='text/css'
         media='all' />
     <link rel='stylesheet' id='slick-css' href='/wp-content/themes/madara/js/slick/slick.css' type='text/css'
@@ -55,24 +53,22 @@
         type='text/css' media='all' />
     <link rel='stylesheet' id='madara-css-child-css' href='/wp-content/themes/madara/style.css' type='text/css'
         media='all' />
-    {{--
     <link rel='stylesheet' id='lightbox-css' href='/wp-content/themes/madara/css/lightbox.min.css' type='text/css'
-        media='all' /> --}}
+        media='all' />
     <link rel='stylesheet' id='fontawesome-css'
         href='/wp-content/themes/madara/app/lib/fontawesome/web-fonts-with-css/css/all.min.css' type='text/css'
         media='all' />
     <link rel='stylesheet' id='ionicons-css' href='/wp-content/themes/madara/css/fonts/ionicons/css/ionicons.min.css'
         type='text/css' media='all' />
-    {{--
+
     <link rel='stylesheet' id='madara-icons-css'
-        href='/wp-content/themes/madara/css/fonts/ct-icon/ct-icon.css?ver=6.6.2' type='text/css' media='all' /> --}}
+        href='/wp-content/themes/madara/css/fonts/ct-icon/ct-icon.css?ver=6.6.2' type='text/css' media='all' />
     <link rel='stylesheet' id='loaders-css' href='/wp-content/themes/madara/css/loaders.min.css' type='text/css'
         media='all' />
     <link rel='stylesheet' id='madara-css-css' href='/wp-content/themes/madara-child-x/style.css' type='text/css'
         media='all' />
-    {{--
     <link rel='stylesheet' id='mycred-front-css' href='/wp-content/plugins/mycred/assets/css/mycred-front.css'
-        type='text/css' media='all' /> --}}
+        type='text/css' media='all' /> 
     {{--
     <link rel='stylesheet' id='mycred-social-share-icons-css'
         href='/wp-content/plugins/mycred/assets/css/mycred-social-icons.css' type='text/css' media='all' /> --}}
@@ -108,8 +104,7 @@
     <!--End JS-->
 </head>
 
-<body
-    class="home page-template page-template-page-templates page-template-front-page page-template-page-templatesfront-page-php page page-id-189 wp-embed-responsive header-style-1 sticky-enabled sticky-style-1 text-ui-light minimal-reading-layout">
+<body class="home page-template page-template-page-templates page-template-front-page page-template-page-templatesfront-page-php page page-id-189 wp-embed-responsive header-style-1 sticky-enabled sticky-style-1 text-ui-light minimal-reading-layout">
 
     <div id="pageloader" class="spinners">
         <div class="spinner">
@@ -481,8 +476,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
             <!--End Content-->
             <!-- <div class="site-content"> -->
@@ -569,150 +562,156 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script>
         async function comic_detail(slug) {  
-           const comic = await fetch('/api/comic/'+slug);
-              const responseArray = await comic.json();
-              const comic_detail = responseArray['detail']['item'];
-               const imageUrl = 'https://img.otruyenapi.com/uploads/comics/';
-              console.log(comic_detail);
-              const contentDetail = document.getElementById('site-content');
-              contentDetail.innerHTML = `
-                <div class="post-249 wp-manga type-wp-manga status-publish has-post-thumbnail hentry wp-manga-tag-tag-1 wp-manga-tag-tag-2 wp-manga-tag-tag-3 wp-manga-release-4 wp-manga-author-the-author wp-manga-artist-artist wp-manga-genre-action wp-manga-genre-adventure wp-manga-genre-boys wp-manga-genre-chinese wp-manga-genre-drama wp-manga-genre-ecchi wp-manga-genre-fighting wp-manga-genre-fun wp-manga-genre-girl wp-manga-genre-horrow wp-manga-genre-manhwa chapter-listing-1">
-                    <div class="profile-manga" style="margin-top: 35px;margin-bottom: 50px;">
-                        <div class="container">
-                            <div class="row">
-                                <div class="left col-12 col-sm-12 col-md-4">
-                                    <div class="manga-thumb">
-                                        <div class="summary_image">
-                                            <a href="#">
-                                            <img width="450" height="450"  data-src="${imageUrl}${comic_detail['thumb_url']}" data-srcset="${imageUrl}${comic_detail['thumb_url']} 450w, ${imageUrl}${comic_detail['thumb_url']} 150w" data-sizes="(max-width: 450px) 100vw, 450px" class="img-responsive lazyload effect-fade" src="/wp-content/themes/madara/images/dflazy.jpg"  style="padding-top:100%;"  alt="249"/>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <style>
-                                    .action-buttons{
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: space-between;
-                                    margin-top: 15px;
-                                    margin-bottom: 60px;
-                                    }
-                                    </style>
-                                    <div class="action-buttons">
-                                        <div class="left">
-
-                                            <div id="init-links" class="nav-links">
-                                                <a href="#" id="btn-read-last" class="c-btn c-btn_style-1">
-                                                    Xem từ đầu</a>
-                                                <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Xem cuối</a>
-                                            </div>
-
-                                           
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="right col-12 col-sm-12 col-md-8">
-                                    <div class="post-title">
-                                        <h1>${comic_detail['name']}</h1>
-                                    </div>
-                                    <div class="post-content">
-
-                                        <div class="post-content_item">
-                                            <div class="summary-content">
-                                                <div class="genres-content">
-                                                    <a href="https://live.mangabooth.com/x/manga-genre/action/" rel="tag">action</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="description-summary">
-
-                                            <div class="summary__content">
-                                                ${comic_detail['content']}
-                                            </div>
-
-                                        </div>
-
-                                        <div class="author-row">
-
-                                            <div class="post-content_item">
-                                                <div class="summary-heading">
-                                                    <h5>
-                                                        Author </h5>
-                                                </div>
-                                                <div class="summary-content">
-                                                    <div class="author-content">
-                                                        <a href="https://live.mangabooth.com/x/manga-author/the-author/" rel="tag">The Author</a> </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-                                        <div class="ranking manga-info-row">
-                                            <div class="summary-heading">
-                                                <h5>
-                                                    Rank </h5>
-                                            </div>
-                                            <div class="summary-content">
-                                                N/A, it has 5 monthly views </div>
-                                        </div>
-                                        <div class="rating manga-info-row">
-                                            <div class="summary-heading">
-                                                <h5>Rating</h5>
-                                            </div>
-                                            <div class="summary-content">
-                                                <div class="post-content">
-                                                    <div class="loader-inner ball-pulse">
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                                <div class="post-rating">
-                                                    <div class="post-total-rating allow_vote"><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i>
-                                                        <i
-                                                            class="ion-ios-star ratings_stars rating_current"></i><span class="score font-meta total_votes">5</span></div>
-                                                    <div class="user-rating allow_vote"><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i>
-                                                        <i
-                                                            class="ion-ios-star ratings_stars rating_current"></i><span class="score font-meta total_votes">Your Rating</span></div><input type="hidden" class="rating-post-id" value="249"> </div>
-
-                                                <div class="vote-details" vocab="https://schema.org/" typeof="AggregateRating">
-                                                    <span property="itemReviewed" typeof="Book"><span class="rate-title" property="name" title="Manga 17">Manga 17</span></span><span> <span> Average <span property="ratingValue" id="averagerate"> 5</span>                                                    / <span property="bestRating">5</span> </span>
-                                                    </span> out of <span property="ratingCount" id="countrate">1</span> </div>
-
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="release-time author-row">
-
-                                            New chapter released daily </div>
-
-                                        <div class="tags-list">
-                                            <div class="post-content_item">
-                                                <div class="summary-content">
-                                                    <div class="tags-content">
-                                                        <a href="https://live.mangabooth.com/x/manga-tag/tag-1/" rel="tag">tag-1</a> <a href="https://live.mangabooth.com/x/manga-tag/tag-2/" rel="tag">tag-2</a> <a href="https://live.mangabooth.com/x/manga-tag/tag-3/"
-                                                            rel="tag">tag-3</a> </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="manga-chapters-holder" data-id="249"><i class="fas fa-spinner fa-spin fa-3x"></i></div>
-
-                                </div>
-                            </div>
-                        
-
-                        </div>
-                    </div>
-
+            const comic = await fetch('/api/comic/'+slug);
+            const responseArray = await comic.json();
+            const comic_detail = responseArray['detail']['item'];
+            const comic_detail_genre = responseArray['detail']['breadCrumb'];
+            const imageUrl = 'https://img.otruyenapi.com/uploads/comics/';
+            console.log(comic_detail);
+            const contentDetail = document.getElementById('site-content');
+            contentDetail.innerHTML = ``;
+            const row = document.createElement("div");
+            row.classList.add("post-249", "wp-manga", "type-wp-manga", "status-publish", "has-post-thumbnail", "hentry", "wp-manga-tag-tag-1", "wp-manga-tag-tag-2", "wp-manga-tag-tag-3", "wp-manga-release-4", "wp-manga-author-the-author", "wp-manga-artist-artist", "wp-manga-genre-action", "wp-manga-genre-adventure", "wp-manga-genre-boys", "wp-manga-genre-chinese", "wp-manga-genre-drama", "wp-manga-genre-ecchi", "wp-manga-genre-fighting", "wp-manga-genre-fun", "wp-manga-genre-girl", "wp-manga-genre-horrow", "wp-manga-genre-manhwa", "chapter-listing-1");
+            const subDiv = document.createElement("div");
+            subDiv.classList.add("profile-manga");
+            subDiv.style.marginTop="35px";
+            subDiv.style.marginBottom="50px";
+            row.appendChild(subDiv); 
+            const subDiv1 = document.createElement("div");
+            subDiv1.classList.add("container");
+            subDiv.appendChild(subDiv1);
+            const subDiv2 = document.createElement("div");
+            subDiv2.classList.add("row");
+            subDiv1.appendChild(subDiv2);
+            const subDiv3 = document.createElement("div");
+            subDiv3.classList.add("left", "col-12", "col-sm-12", "col-md-4");
+            subDiv2.appendChild(subDiv3);
+            const subDiv4 = document.createElement("div");
+            subDiv4.classList.add("manga-thumb");
+            subDiv4.innerHTML=`
+            <div class="summary_image">
+                <a href="#">
+                <img width="450" height="450"  data-src="${imageUrl}${comic_detail['thumb_url']}" data-srcset="${imageUrl}${comic_detail['thumb_url']} 450w, ${imageUrl}${comic_detail['thumb_url']} 150w" data-sizes="(max-width: 450px) 100vw, 450px" class="img-responsive lazyload effect-fade" src="/wp-content/themes/madara/images/dflazy.jpg"  style="padding-top:100%;"  alt="249"/>
+                </a>
+            </div>
+            `;
+            subDiv3.appendChild(subDiv4);
+            const subDiv4_1 = document.createElement("div");
+            subDiv4_1.classList.add("action-buttons");
+            subDiv4_1.style.display= "flex";
+            subDiv4_1.style.alignItems= "center";
+            subDiv4_1.style.justifyContent= "space-between";
+            subDiv4_1.style.marginTop= "15px";
+            subDiv4_1.style.marginBottom= "60px";
+            subDiv4_1.innerHTML=`
+            <div class="left">
+                <div id="init-links" class="nav-links">
+                    <a href="#" id="btn-read-last" class="c-btn c-btn_style-1">
+                        Xem từ đầu</a>
+                    <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Xem cuối</a>
                 </div>
-              `;
+            </div>
+            `;
+            subDiv3.appendChild(subDiv4_1);
+            const subDiv3_1 = document.createElement("div");
+            subDiv3_1.classList.add("right", "col-12", "col-sm-12", "col-md-8");
+            subDiv2.appendChild(subDiv3_1);
+            const subDiv4_2 = document.createElement("div");
+            subDiv4_2.classList.add("post-title");
+            subDiv4_2.innerHTML=`
+            <h1>${comic_detail['name']}</h1>
+            `;
+            subDiv3_1.appendChild(subDiv4_2);
+            const subDiv4_3 = document.createElement("div");
+            subDiv4_3.classList.add("post-content");
+            subDiv3_1.appendChild(subDiv4_3);
+            const subDiv5 = document.createElement("div");
+            subDiv5.classList.add("post-content_item");
+            subDiv4_3.appendChild(subDiv5);
+            const subDiv6 = document.createElement("div");
+            subDiv6.classList.add("summary-content");
+            subDiv5.appendChild(subDiv6);
+            const subDiv7 = document.createElement("div");
+            subDiv7.classList.add("genres-content");
+            comic_detail_genre.forEach(item=>{
+                const link = document.createElement("a");
+                link.style.margin = "10px";
+                link.href = `#`;
+                link.rel = "tag";
+                link.textContent = item['name'];
+                subDiv7.appendChild(link);
+            });
+            
+            subDiv6.appendChild(subDiv7);
+            
+            const subDiv5_1 = document.createElement("div");
+            subDiv5_1.classList.add("description-summary");
+            subDiv5_1.style.margin = "10px";
+            subDiv5_1.innerHTML = `
+            <div class="summary__content">
+                ${comic_detail['content']}
+            </div>
+            `;
+            subDiv4_3.appendChild(subDiv5_1);
 
-             
+            const subDiv5_2 = document.createElement("div");
+            subDiv5_2.classList.add("author-row");
+            subDiv5_2.style.margin = "10px";
+            subDiv5_2.innerHTML = `
+            <div class="post-content_item">
+                <div class="summary-heading">
+                    <h5>Tác Giả: </h5>
+                </div>
+                <div class="summary-content">
+                    <div class="author-content">
+                        <a href="#" rel="tag">${comic_detail['author']['0']}</a> </div>
+                </div>
+            </div>
+            `;
+            subDiv4_3.appendChild(subDiv5_2);
+
+            const subDiv5_3 = document.createElement("div");
+            subDiv5_3.classList.add("release-time", "author-row");
+            subDiv5_3.style.margin = "10px";
+            subDiv5_3.textContent = `
+             Chương mới phát hành:
+            `;
+            subDiv4_3.appendChild(subDiv5_3);
+
+            const subDiv4_4 = document.createElement("div");
+            subDiv3_1.appendChild(subDiv4_4);
+
+            const subDiv5_4 = document.createElement("div");
+            subDiv5_4.classList.add("page-content-listing", "single-page");
+            subDiv5_4.style.paddingLeft = "10px";
+            subDiv4_4.appendChild(subDiv5_4);
+
+            const subDiv6_1 = document.createElement("div");
+            subDiv6_1.classList.add("listing-chapters_wrap", "cols-2");
+            subDiv5_4.appendChild(subDiv6_1);
+
+            const subDiv7_1 = document.createElement("div");
+            subDiv7_1.classList.add("main", "version-chap", "no-volumn");
+            subDiv7_1.style.maxHeight = "300px";
+            subDiv7_1.style.overflowY = "auto";
+            subDiv7_1.style.paddingRight = "10px";
+
+            comic_detail['chapters'][0]['server_data'].forEach(chapter=>{
+                const chap = document.createElement("li");
+                chap.classList.add("wp-manga-chapter", "has-thumb", "free-chap");
+
+                const link = document.createElement("a");
+                link.href = `/api/comic/${comic_detail['slug']}/${chapter['chapter_name']}`; 
+                link.textContent = `Chương - ${chapter['chapter_name']}`;
+                link.id = `chapter-${chapter['chapter_name']}`;
+                link.classList.add("chapter-link");
+                link.setAttribute("data-chapter", chapter['chapter_name']); 
+                chap.appendChild(link);
+                subDiv7_1.prepend(chap);
+            });
+            subDiv6_1.appendChild(subDiv7_1);
+
+            contentDetail.appendChild(row);  
 
         }
         document.querySelectorAll('.btn-comic').forEach(link => {
