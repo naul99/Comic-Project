@@ -565,9 +565,11 @@
             const comic = await fetch('/api/comic/'+slug);
             const responseArray = await comic.json();
             const comic_detail = responseArray['detail']['item'];
+            const chapter_last = responseArray['chapter_last'];
             const comic_detail_genre = responseArray['detail']['breadCrumb'];
             const imageUrl = 'https://img.otruyenapi.com/uploads/comics/';
-            console.log(comic_detail);
+            const img = imageUrl+comic_detail['thumb_url'];
+            // console.log(comic_detail);
             const contentDetail = document.getElementById('site-content');
             contentDetail.innerHTML = ``;
             const row = document.createElement("div");
@@ -606,9 +608,9 @@
             subDiv4_1.innerHTML=`
             <div class="left">
                 <div id="init-links" class="nav-links">
-                    <a href="#" id="btn-read-last" class="c-btn c-btn_style-1">
+                    <a href="/api/comic/${comic_detail['slug']}/1" id="btn-read-last" class="c-btn c-btn_style-1">
                         Xem từ đầu</a>
-                    <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Xem cuối</a>
+                    <a href="/api/comic/${comic_detail['slug']}/${chapter_last}" id="btn-read-first" class="c-btn c-btn_style-1">Xem cuối</a>
                 </div>
             </div>
             `;
@@ -701,13 +703,19 @@
                 chap.classList.add("wp-manga-chapter", "has-thumb", "free-chap");
 
                 const link = document.createElement("a");
-                link.href = `/api/comic/${comic_detail['slug']}/${chapter['chapter_name']}`; 
+                link.href = 'javascript:void(0);'; 
                 link.textContent = `Chương - ${chapter['chapter_name']}`;
-                link.id = `chapter-${chapter['chapter_name']}`;
-                link.classList.add("chapter-link");
-                link.setAttribute("data-chapter", chapter['chapter_name']); 
+                
+                link.classList.add("btn-comic-chapter");
+                // link.setAttribute("data-chapter", chapter['chapter_name']); 
+                // link.setAttribute("data-slug", comic_detail['slug']); 
                 chap.appendChild(link);
                 subDiv7_1.prepend(chap);
+                link.addEventListener('click', function(event) {
+                event.preventDefault();
+                
+                comic_chapter(chapter['chapter_name'],comic_detail['slug'],img);
+            });
             });
             subDiv6_1.appendChild(subDiv7_1);
 
@@ -722,6 +730,70 @@
                 
             });
         });
+        async function comic_chapter(chapter,slug, img) {  
+            const comic_chapter = await fetch('/api/comic/'+slug+'/'+chapter);
+            const responseChapter = await comic_chapter.json();
+            console.log(responseChapter);
+            const contentChapter = document.body;
+            // contentChapter.innerHTML = ``;
+            contentChapter.className="";
+            contentChapter.classList.add("wp-manga-template-default", "single", "single-wp-manga", "postid-249", "wp-embed-responsive", "wp-manga-page", "reading-manga", "click-to-scroll", "keyboard-navigate", "page", "header-style-1", "sticky-enabled", "sticky-style-1", "text-ui-light", "manga-reading-list-style", "minimal-reading-layout");
+            const chapDiv = document.getElementById('site-content');
+            chapDiv.innerHTML = ``;
+            const chapDiv1 = document.createElement("div");
+            chapDiv1.classList.add("c-page-content", "style-1","reading-content-wrap","chapter-type-manga");
+            chapDiv.appendChild(chapDiv1);
+            const chapDiv2 = document.createElement("div");
+            chapDiv2.classList.add("content-area");
+            chapDiv1.appendChild(chapDiv2);
+
+            const chapDiv3 = document.createElement("div");
+            chapDiv3.classList.add("container");
+            chapDiv2.appendChild(chapDiv3);
+
+            const chapDiv4 = document.createElement("div");
+            chapDiv4.classList.add("row");
+            chapDiv3.appendChild(chapDiv4);
+
+            const chapDiv5 = document.createElement("div");
+            chapDiv5.classList.add("main-col", "col-sm-12", "sidebar-hidden");
+            chapDiv4.appendChild(chapDiv5);
+
+            const chapDiv6 = document.createElement("div");
+            chapDiv6.classList.add("d-flex" ,"justify-content-between","align-items-center");
+            chapDiv5.appendChild(chapDiv6);
+
+            const chapDiv7 = document.createElement("div");
+            chapDiv7.classList.add("prev-chap-item");
+            chapDiv5.appendChild(chapDiv7);
+
+            const chapA = document.createElement("a");
+            chapA.style.fontSize = "22px";
+            chapA.href = '/';
+            chapA.classList.add("back-to-manga-detail");
+            chapA.innerHTML = `
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>`;
+            chapDiv7.appendChild(chapA);
+
+            const chapDiv8 = document.createElement("div");
+            chapDiv8.classList.add("chap-item");
+            chapDiv8.innerHTML = `
+            <a href="#" title="Manga 17">
+                <img width="75" height="106"
+                    data-src="${img}"
+                    class="img-responsive lazyload effect-fade"
+                    src="https://live.mangabooth.com/x/wp-content/themes/madara/images/dflazy.jpg"
+                    style="padding-top:106px;" alt="249" /> </a>
+            <h3><a href="#" title="${responseChapter['chapter']['item']['comic_name']}">${responseChapter['chapter']['item']['comic_name']}</a></h3>
+                    `;
+            chapDiv7.appendChild(chapDiv8);
+
+        }
+      
+    </script>
+
+    <script>
+        
     </script>
     <script>
         function timeAgo(timestamp) {

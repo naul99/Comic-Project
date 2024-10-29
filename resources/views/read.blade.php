@@ -217,7 +217,8 @@
                                             <a style="font-size:22px"
                                                 href="https://live.mangabooth.com/x/manga/manga-17-2/"
                                                 class="back-to-manga-detail"><i class="fa fa-chevron-left"
-                                                    aria-hidden="true"></i></a>
+                                                    aria-hidden="true"></i>
+                                            </a>
                                             <div class="chap-item">
                                                 <a href="https://live.mangabooth.com/x/manga/manga-17-2/"
                                                     title="Manga 17">
@@ -230,13 +231,9 @@
                                                         title="Manga 17">Manga 17</a></h3>
                                             </div>
                                         </div>
-                                        <!-- <div class="chapter-nav">
-									<button type="button" class="prev"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
-									<button type="button" class="next"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
-								</div> -->
+                                       
                                     </div>
-                                    <h1 id="chapter-heading">
-                                        Chapter 4 </h1>
+                                    <h1 id="chapter-heading">Chapter 4 </h1>
                                     <!-- container & no-sidebar-->
                                     <div class="main-col-inner">
                                         <div class="c-blog-post">
@@ -335,164 +332,24 @@
                                             </div>
                                             <div class="entry-content">
                                                 <div class="entry-content_wrap">
-
                                                     <div class="read-container">
-
-
                                                         <div class="reading-content">
-                                                            <input type="hidden" id="wp-manga-current-chap"
-                                                                data-id="233" value="chapter-4" />
-                                                            <input type="hidden" id="chapter_lightbox" value="1" />
                                                             <div class="chapter-images">
-
                                                                 <div class="page-break ">
-
                                                                     <img id="image-0"
                                                                         data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-01.jpg"
                                                                         class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
                                                                 </div>
-
-
-
                                                                 <div class="page-break ">
-
                                                                     <img id="image-1"
                                                                         data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-02.jpg"
                                                                         class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
                                                                 </div>
-
-
-
                                                                 <div class="page-break ">
-
                                                                     <img id="image-2"
                                                                         data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-03.jpg"
                                                                         class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
                                                                 </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-3"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-04.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-4"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-05.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-5"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-06.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-6"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-07.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-7"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-08.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-8"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-09.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-9"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-10.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-10"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-11.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-11"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-12.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-12"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-13.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-13"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-14.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
-
-
-                                                                <div class="page-break ">
-
-                                                                    <img id="image-14"
-                                                                        data-src=" https://live.mangabooth.com/x/wp-content/uploads/WP-manga/data//chapter-4/sample-15.jpg"
-                                                                        class="wp-manga-chapter-img img-responsive lazyload-ordered effect-fade">
-
-                                                                </div>
-
                                                             </div>
                                                         </div>
 
@@ -523,7 +380,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="modal offcanvas-menu shadow pr-0" id="chaptersModal" tabindex="-1"
                             aria-labelledby="chaptersModalLabel" aria-hidden="true" data-backdrop="">
                             <div class="m-0 h-100">
@@ -630,11 +486,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
                 <div class="go-to-top active">
                     <i class="icon ion-md-arrow-up"></i>
                 </div>

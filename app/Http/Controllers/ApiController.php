@@ -57,9 +57,13 @@ class ApiController extends Controller
     }
     public function detail($slug){
         $data = Http::get("https://otruyenapi.com/v1/api/truyen-tranh/".$slug);
+        $count_last = count($data['data']['item']['chapters']['0']['server_data']) -1;
+        $last = $data['data']['item']['chapters']['0']['server_data'][$count_last]['chapter_name'];
+        
         return response()->json([
             "code"=> 200,
             'detail' => $data['data'],
+            'chapter_last' => $last,
         ]);
     }
     public function read($slug,$chapter){
