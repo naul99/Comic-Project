@@ -242,36 +242,27 @@
                                                 data-chapter="chapter-4" data-id="249">
                                                 <div class="wp-manga-nav">
                                                     <div class="entry-header_wrap">
-
                                                         <div class="c-breadcrumb-wrapper">
-
-
                                                             <div class="c-breadcrumb">
                                                                 <ol class="breadcrumb">
                                                                     <li>
                                                                         <a href="https://live.mangabooth.com/x/">
                                                                             Home </a>
                                                                     </li>
-
-
                                                                     <li>
                                                                         <a
                                                                             href="https://live.mangabooth.com/x/manga/manga-17-2/">
                                                                             Manga 17 </a>
                                                                     </li>
-
                                                                     <li class="active">
                                                                         Chapter 4 - Other Name 4 </li>
-
                                                                 </ol>
                                                             </div>
 
                                                             <div class="action-icon">
                                                                 <ul class="action_list_icon list-inline">
                                                                     <li>
-                                                                        <script type="text/javascript">
-                                                                            var requireLogin2BookMark = true;
-                                                                        </script><a href="#"
+                                                                       <a href="#"
                                                                             class="wp-manga-action-button"
                                                                             data-action="bookmark" data-post="249"
                                                                             data-chapter="233" data-page="1"
@@ -290,8 +281,7 @@
                                                     </div>
 
                                                     <div class="select-view">
-
-                                                        <!-- select host -->
+                                                      
                                                         <div class="c-selectpicker selectpicker_version">
                                                             <label>
                                                                 <select class="selectpicker host-select">
@@ -301,14 +291,9 @@
                                                                 </select>
                                                             </label>
                                                         </div>
-
-                                                        <!-- select volume -->
-
-                                                        <!-- select chapter -->
                                                         <div class="chapter-selection chapters_selectbox_holder"
                                                             data-manga="249" data-chapter="chapter-4" data-vol="0"
                                                             data-type="manga" data-style="list">
-                                                            <!-- place holder -->
                                                         </div>
                                                     </div>
                                                     <div class="select-pagination">
@@ -385,40 +370,18 @@
                             <div class="m-0 h-100">
                                 <div class="modal-content border-0 rounded-0">
                                     <div class="manga">
-
                                         <h3>Manga 17</h3>
-                                        <div class="meta">
-                                            <span class="views">
-                                                <i class='fa fa-eye'></i> 10 Views </span>
-                                            <span class="subs">
-                                                0 Subscribers </span>
-                                        </div>
-                                        <div class="description-summary">
-
-                                            <div class="summary__content">
-                                                <p>What is Lorem Ipsum?<br /> Lorem Ipsum is simply dummy text of the
-                                                    printing and typesetting industry. Lorem Ipsum has been the industry
-                                                    s standard dummy text ever since the 1500s, when an...
-                                            </div>
-
-                                        </div>
-
                                     </div>
                                     <div class="chapters">
                                         <div class="c-blog__heading font-heading">
-                                            <h2 class="h4">
-                                                4 Chapters </h2>
-                                            <a href="#" title="Change Order" class="btn-reverse-order"><i
-                                                    class="fas fa-sort-amount-up"></i></a>
+                                            <h2 class="h4">4 Chapters </h2>
+                                            <a href="#" title="Change Order" class="btn-reverse-order">
+                                                <i class="fas fa-sort-amount-up"></i>
+                                            </a>
                                         </div>
                                         <div class="page-content-listing single-page">
                                             <div class="listing-chapters_wrap cols-1  show-more">
-
-
-
                                                 <ul class="main version-chap no-volumn">
-
-
                                                     <li class="wp-manga-chapter   has-thumb free-chap  ">
                                                         <span class="coin free">Free</span>
                                                         <div class="chapter-thumbnail">
@@ -431,55 +394,7 @@
                                                                 Chapter 4 Other Name 4 </a>
                                                         </div>
                                                     </li>
-
-
-                                                    <li class="wp-manga-chapter   has-thumb free-chap  ">
-                                                        <span class="coin free">Free</span>
-                                                        <div class="chapter-thumbnail">
-                                                            <img class="thumb"
-                                                                src="https://live.mangabooth.com/x/wp-content/uploads/images/thumb-2-34.jpg" />
-                                                        </div>
-                                                        <div class="chapter-name">
-                                                            <a
-                                                                href="https://live.mangabooth.com/x/manga/manga-17-2/chapter-3/">
-                                                                Chapter 3 Other Name 3 </a>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li class="wp-manga-chapter   has-thumb free-chap  ">
-                                                        <span class="coin free">Free</span>
-                                                        <div class="chapter-thumbnail">
-                                                            <img class="thumb"
-                                                                src="https://live.mangabooth.com/x/wp-content/uploads/images/thumb-2-34.jpg" />
-                                                        </div>
-                                                        <div class="chapter-name">
-                                                            <a
-                                                                href="https://live.mangabooth.com/x/manga/manga-17-2/chapter-2/">
-                                                                Chapter 2 Other Name 2 </a>
-                                                        </div>
-                                                    </li>
-
-
-                                                    <li class="wp-manga-chapter   has-thumb free-chap  ">
-                                                        <span class="coin free">Free</span>
-                                                        <div class="chapter-thumbnail">
-                                                            <img class="thumb"
-                                                                src="https://live.mangabooth.com/x/wp-content/uploads/images/thumb-2-34.jpg" />
-                                                        </div>
-                                                        <div class="chapter-name">
-                                                            <a
-                                                                href="https://live.mangabooth.com/x/manga/manga-17-2/chapter-1/">
-                                                                Chapter 1 Other Name 1 </a>
-                                                        </div>
-                                                    </li>
-
-
-
                                                 </ul>
-
-
-
                                             </div>
                                         </div>
                                     </div>

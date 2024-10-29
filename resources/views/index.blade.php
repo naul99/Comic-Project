@@ -365,7 +365,7 @@
                                                                     <div class="slider__content_item">
                                                                         <div class="post-title font-title">
                                                                             <h4>
-                                                                                <a href="#">
+                                                                                <a href="#" class="btn-comic" data-slug="{{ $comic['slug'] }}">
                                                                                     {{$comic['name']}} </a>
                                                                             </h4>
                                                                         </div>
@@ -415,7 +415,7 @@
                                                                     <div class="slider__content_item">
                                                                         <div class="post-title font-title">
                                                                             <h4>
-                                                                                <a href="#">
+                                                                                <a href="#" class="btn-comic" data-slug="{{ $comic['slug'] }}">
                                                                                     {{$comic['name']}} </a>
                                                                             </h4>
                                                                         </div>
@@ -569,6 +569,7 @@
             const comic_detail_genre = responseArray['detail']['breadCrumb'];
             const imageUrl = 'https://img.otruyenapi.com/uploads/comics/';
             const img = imageUrl+comic_detail['thumb_url'];
+            const name = comic_detail['name']
             // console.log(comic_detail);
             const contentDetail = document.getElementById('site-content');
             contentDetail.innerHTML = ``;
@@ -714,7 +715,7 @@
                 link.addEventListener('click', function(event) {
                 event.preventDefault();
                 
-                comic_chapter(chapter['chapter_name'],comic_detail['slug'],img);
+                comic_chapter(chapter['chapter_name'],comic_detail['slug'],img,name);
             });
             });
             subDiv6_1.appendChild(subDiv7_1);
@@ -730,10 +731,12 @@
                 
             });
         });
-        async function comic_chapter(chapter,slug, img) {  
+        async function comic_chapter(chapter,slug, img, name) {  
             const comic_chapter = await fetch('/api/comic/'+slug+'/'+chapter);
             const responseChapter = await comic_chapter.json();
-            console.log(responseChapter);
+            const chapter_path = responseChapter['chapter']['item']['chapter_path'];
+            const url = responseChapter['chapter']['domain_cdn'];
+            // console.log(chapter_path);
             const contentChapter = document.body;
             // contentChapter.innerHTML = ``;
             contentChapter.className="";
@@ -784,17 +787,165 @@
                     class="img-responsive lazyload effect-fade"
                     src="https://live.mangabooth.com/x/wp-content/themes/madara/images/dflazy.jpg"
                     style="padding-top:106px;" alt="249" /> </a>
-            <h3><a href="#" title="${responseChapter['chapter']['item']['comic_name']}">${responseChapter['chapter']['item']['comic_name']}</a></h3>
+            <h3><a href="#" title="${name}">${name}</a></h3>
                     `;
             chapDiv7.appendChild(chapDiv8);
 
+            const chapDiv6_1 = document.createElement("h1");
+            chapDiv6_1.id = "chapter-heading";
+            chapDiv6_1.textContent = `Chương ${responseChapter['chapter']['item']['chapter_name']}`;
+            chapDiv5.appendChild(chapDiv6_1);
+
+            const chapDiv6_2 = document.createElement("div");
+            chapDiv6_2.classList.add("main-col-inner");
+            chapDiv5.appendChild(chapDiv6_2);
+
+            const chapDiv7_1 = document.createElement("div");
+            chapDiv7_1.classList.add("c-blog-post");
+            chapDiv6_2.appendChild(chapDiv7_1);
+
+            const chapDiv8_1 = document.createElement("div");
+            chapDiv8_1.classList.add("entry-header", "header");
+            chapDiv7_1.appendChild(chapDiv8_1);
+
+            const chapDiv9 = document.createElement("div");
+            chapDiv9.classList.add("wp-manga-nav");
+            chapDiv9.innerHTML = `
+            <div class="entry-header_wrap">
+                <div class="c-breadcrumb-wrapper">
+                    <div class="action-icon">
+                        <ul class="action_list_icon list-inline">
+                            <li><a href="#" class="wp-manga-action-button"
+                                    data-action="toggle-contrast"
+                                    title="Toggle Dark/Light Mode"><i
+                                        class="icon ion-md-contrast"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            `;
+            chapDiv8_1.appendChild(chapDiv9);
+
+            const chapDiv8_2 = document.createElement("div");
+            chapDiv8_2.classList.add("entry-content");
+            chapDiv7_1.appendChild(chapDiv8_2);
+
+            const chapDiv9_1 = document.createElement("div");
+            chapDiv9_1.classList.add("entry-content_wrap");
+            chapDiv8_2.appendChild(chapDiv9_1);
+
+            const chapDiv10 = document.createElement("div");
+            chapDiv10.classList.add("read-container");
+            chapDiv9_1.appendChild(chapDiv10);
+
+            const chapDiv11 = document.createElement("div");
+            chapDiv11.classList.add("reading-content");
+            chapDiv10.appendChild(chapDiv11);
+
+            const chapDiv12 = document.createElement("div");
+            chapDiv12.classList.add("chapter-images");
+
+            responseChapter['chapter']['item']['chapter_image'].forEach(chapter_img=>{
+                const imgDiv = document.createElement("div");
+                imgDiv.classList.add("page-break");
+
+                const comic_image = document.createElement("img");
+                comic_image.src = `${url}`+`/`+`${chapter_path}`+`/`+`${chapter_img['image_file']}`; 
+                comic_image.classList = "wp-manga-chapter-img", "img-responsive","lazyload-ordered","effect-fade";
+                comic_image.setAttribute('loading','lazy');
+                imgDiv.appendChild(comic_image);
+                chapDiv12.appendChild(imgDiv);
+                
+            });
+            
+            chapDiv11.appendChild(chapDiv12);
+
+            const chapDiv3_1 = document.createElement("div");
+            chapDiv3_1.classList.add("text-reading-footer");
+            
+            chapDiv3_1.innerHTML = `
+            <div class="container d-flex justify-content-between">
+                <div class="left-footer">
+                    <button class="hamburger open-chaps-list-canvas" type="button" data-toggle="modal"
+                        data-target="#chaptersModal"><i class="fa fa-bars"
+                            aria-hidden="true"></i></button>
+                    <h5 class="chap-name">Chương ${responseChapter['chapter']['item']['chapter_name']}</h5>
+                </div>
+                <div class="right-footer">
+                    <div class="chap-nav">
+                        <button type="button" class="prev-chap"><i class="fa fa-chevron-left"
+                                aria-hidden="true"></i> Prev</button>
+                        <button type="button" class="next-chap">Next <i class="fa fa-chevron-right"
+                                aria-hidden="true"></i></button>
+                    </div>
+                </div>
+            </div>
+            `;
+            chapDiv2.appendChild(chapDiv3_1);
+
+            const chapDiv4_1 = document.createElement("div");
+            chapDiv4_1.classList.add("modal" ,"offcanvas-menu", "shadow", "pr-0");
+            chapDiv4_1.id  = "chaptersModal";
+            chapDiv4_1.setAttribute("tabindex", "-1");
+            chapDiv4_1.setAttribute("aria-labelledby", "chaptersModalLabel");
+            chapDiv4_1.setAttribute("aria-hidden", "true");
+            chapDiv4_1.setAttribute("data-backdrop", "");
+            chapDiv2.appendChild(chapDiv4_1);
+
+            const chapDiv5_1 = document.createElement("div");
+            chapDiv5_1.classList.add("m-0", "h-100");
+            chapDiv4_1.appendChild(chapDiv5_1);
+
+            const chapDiv6_3 = document.createElement("div");
+            chapDiv6_3.classList.add("modal-content", "border-0", "rounded-0");
+            chapDiv6_3.innerHTML = `
+            <div class="manga">
+                <h3>${name}</h3>
+            </div>
+            `;
+            chapDiv5_1.appendChild(chapDiv6_3);
+
+            const chapDiv6_4 = document.createElement("div");
+            chapDiv6_4.classList.add("chapters");
+            chapDiv5_1.appendChild(chapDiv6_4);
+
+            const chapDiv7_2 = document.createElement("div");
+            chapDiv7_2.classList.add("c-blog__heading", "font-heading");
+            chapDiv7_2.innerHTML = `
+            <h2 class="h4">4 Chapters </h2>
+            `;
+            chapDiv6_4.appendChild(chapDiv7_2);
+
+            const chapDiv7_3 = document.createElement("div");
+            chapDiv7_3.classList.add("age-content-listing", "single-page");
+            chapDiv6_4.appendChild(chapDiv7_3);
+
+            const chapDiv8_3 = document.createElement("div");
+            chapDiv8_3.classList.add("listing-chapters_wrap" ,"cols-1", "show-more");
+            chapDiv7_3.appendChild(chapDiv8_3);
+
+            const chapDiv9_2 = document.createElement("ul");
+            chapDiv9_2.classList.add("main", "version-chap" ,"no-volumn");
+            chapDiv9_2.innerHTML = `
+            <li class="wp-manga-chapter   has-thumb free-chap  ">
+                <span class="coin free">Free</span>
+                <div class="chapter-thumbnail">
+                    <img class="thumb"
+                        src="${img}" />
+                </div>
+                <div class="chapter-name">
+                    <a
+                        href="#">
+                        Chapter 4 Other Name 4 </a>
+                </div>
+            </li>
+            `;
+            chapDiv8_3.appendChild(chapDiv9_2);
         }
       
     </script>
 
-    <script>
-        
-    </script>
     <script>
         function timeAgo(timestamp) {
             const now = new Date();
@@ -837,7 +988,7 @@
                             <a href="#" title="${item.name}">${item.name}</a>
                         </td>
                         <td class="release has-thumb free-chap">
-                            <a href="#" title="Chapter ${item.chaptersLatest[0].chapter_name}">
+                            <a class="btn-comic" data-slug="${item.slug}" href="#" title="Chapter ${item.chaptersLatest[0].chapter_name}">
                                 Chapter ${item.chaptersLatest[0].chapter_name}
                             </a>
                         </td>
@@ -977,7 +1128,6 @@
                 }
                 const btnRight = document.querySelector('.btn-right');
               
-                
                 const pages = parseInt(btnRight.getAttribute('data-page'));
                 btnRight.setAttribute('data-page', pages - 1);
 
@@ -992,10 +1142,6 @@
                 
             });
         });
-
-        
-    
-       
     </script>
 
 </body>
