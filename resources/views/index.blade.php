@@ -736,7 +736,7 @@
             const responseChapter = await comic_chapter.json();
             const chapter_path = responseChapter['chapter']['item']['chapter_path'];
             const url = responseChapter['chapter']['domain_cdn'];
-            // console.log(chapter_path);
+            console.log(responseChapter['list_chapter']);
             const contentChapter = document.body;
             // contentChapter.innerHTML = ``;
             contentChapter.className="";
@@ -829,6 +829,7 @@
 
             const chapDiv8_2 = document.createElement("div");
             chapDiv8_2.classList.add("entry-content");
+            chapDiv8_2.id = "entry-content";
             chapDiv7_1.appendChild(chapDiv8_2);
 
             const chapDiv9_1 = document.createElement("div");
@@ -927,23 +928,72 @@
 
             const chapDiv9_2 = document.createElement("ul");
             chapDiv9_2.classList.add("main", "version-chap" ,"no-volumn");
-            chapDiv9_2.innerHTML = `
-            <li class="wp-manga-chapter   has-thumb free-chap  ">
-                <span class="coin free">Free</span>
-                <div class="chapter-thumbnail">
-                    <img class="thumb"
-                        src="${img}" />
-                </div>
-                <div class="chapter-name">
-                    <a
-                        href="#">
-                        Chapter 4 Other Name 4 </a>
-                </div>
-            </li>
-            `;
+            responseChapter['list_chapter'].forEach(all=>{
+                
+                const chapDiv10_1 = document.createElement("li");
+                chapDiv10_1.classList.add("wp-manga-chapter", "has-thumb", "free-chap");
+                chapDiv10_1.innerHTML = `
+                    <span class="coin free">Free</span>
+                    <div class="chapter-thumbnail">
+                        <img class="thumb"
+                            src="${img}" />
+                    </div>
+                    <div class="chapter-name">
+                        <a class="btn-chapter" data-chapter="${all['chapter_name']}" href="#">Chapter ${all['chapter_name']} </a>
+                    </div>
+                `;
+                chapDiv9_2.appendChild(chapDiv10_1);
+                chapDiv10_1.addEventListener('click', function(event) {
+                event.preventDefault();
+                
+                chapters(all['chapter_name'],slug,url);
+            });
+                
+            });
+          
             chapDiv8_3.appendChild(chapDiv9_2);
         }
-      
+        async function chapters(num_chapter,slug,url) {
+            const comic_chapter = await fetch('/api/comic/'+slug+'/'+num_chapter);
+            const responseChapter = await comic_chapter.json();
+            const chapter = responseChapter['chapter'];
+            const chapter_path = responseChapter['chapter']['item']['chapter_path'];
+            const contentPage = document.getElementById('entry-content');
+            contentPage.innerHTML = '';
+
+            const chapDiv6_1 = document.getElementById("chapter-heading");
+            chapDiv6_1.textContent = `Chương ${chapter['item']['chapter_name']}`;
+
+            const chapDiv9_1 = document.createElement("div");
+            chapDiv9_1.classList.add("entry-content_wrap");
+            contentPage.appendChild(chapDiv9_1);
+
+            const chapDiv10 = document.createElement("div");
+            chapDiv10.classList.add("read-container");
+            chapDiv9_1.appendChild(chapDiv10);
+
+            const chapDiv11 = document.createElement("div");
+            chapDiv11.classList.add("reading-content");
+            chapDiv10.appendChild(chapDiv11);
+
+            const chapDiv12 = document.createElement("div");
+            chapDiv12.classList.add("chapter-images");
+
+            chapter['item']['chapter_image'].forEach(chapter_img=>{
+                const imgDiv = document.createElement("div");
+                imgDiv.classList.add("page-break");
+
+                const comic_image = document.createElement("img");
+                comic_image.src = `${url}`+`/`+`${chapter_path}`+`/`+`${chapter_img['image_file']}`; 
+                comic_image.classList = "wp-manga-chapter-img", "img-responsive","lazyload-ordered","effect-fade";
+                comic_image.setAttribute('loading','lazy');
+                imgDiv.appendChild(comic_image);
+                chapDiv12.appendChild(imgDiv);
+                
+            });
+            
+            chapDiv11.appendChild(chapDiv12);
+        }   
     </script>
 
     <script>
