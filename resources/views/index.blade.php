@@ -1068,6 +1068,8 @@
             });
             
             chapDiv11.appendChild(chapDiv12);
+            history.replaceState({}, null, `/comic/${slug}/${num_chapter}`);
+            history.pushState({}, null, `/comic/${slug}/${num_chapter}`);
         }   
 
     </script>
