@@ -149,25 +149,23 @@
                                 <div class="col-md-12">
                                     <div class="main-navigation_wrap">
                                         <div class="menu-left">
-                                            <a class="logo" href="/" title="Madara Child X Theme">
+                                            <a class="logo" href="/" title="">
                                                 <img class="img-responsive"
                                                     src="/wp-content/themes/madara/images/logo.png"
                                                     alt="Madara Child X Theme" />
                                             </a>
                                             <div class="main-menu">
+                                            <div class="section_adult on">
+                                                <a href="/" target="_self" title="Family Safe">
+                                                    <span class="dot"><!-- --></span><span>Family Safe</span>
+                                                </a>
+                                            </div>
                                                 <ul class="nav navbar-nav main-navbar">
                                                     <li id="menu-item-197"
                                                         class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-189 current_page_item menu-item-197">
-                                                        <a href="/" aria-current="page">Home</a>
+                                                        <a href="/" aria-current="page">Trang Chính</a>
                                                     </li>
-                                                    <li id="menu-item-198"
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-198">
-                                                        <a href="#">All Series</a>
-                                                    </li>
-                                                    <li id="menu-item-199"
-                                                        class="menu-item menu-item-type-post_type menu-item-object-page menu-item-199">
-                                                        <a href="#">Calendar</a>
-                                                    </li>
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
@@ -235,21 +233,14 @@
                         <ul id="menu-primary-menu-594" class="nav navbar-nav main-navbar">
                             <li id="nav-menu-item-197"
                                 class="main-menu-item menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-189 current_page_item">
-                                <a href="/" class="menu-link  main-menu-link">Home </a>
+                                <a href="/" class="menu-link  main-menu-link">Trang Chính </a>
                             </li>
-                            <li id="nav-menu-item-198"
-                                class="main-menu-item menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page">
-                                <a href="/all-series/" class="menu-link  main-menu-link">All Series </a>
-                            </li>
-                            <li id="nav-menu-item-199"
-                                class="main-menu-item menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page">
-                                <a href="/calendar-2/" class="menu-link  main-menu-link">Calendar </a>
-                            </li>
+                           
                         </ul>
                     </nav>
 
                     <div class="center">
-                        <div class="section_adult off">
+                        <div class="section_adult on">
                             <a href="/" target="_self" title="Family Safe">
                                 <span class="dot">
                                     <!-- -->
@@ -260,6 +251,16 @@
                 </div>
 
             </header>
+            <style>
+                .mobile{
+                    height:330px
+                }
+                @media only screen and (max-width: 600px) {
+                    .mobile{
+                        height:250px;
+                    }
+                }
+            </style>
             <!--Start Content-->
             <div id="site-content" class="site-content">
                 <div class="c-page-content style-2">
@@ -277,7 +278,7 @@
                                                         data-style="style-2" data-count="3">
 
                                                         <div class="slider__container" role="toolbar">
-                                                            @foreach($list_comic_new as $comic)
+                                                            @foreach($list_comic_new as $key=>$comic)
                                                             <div class="slider__item ">
                                                                 <div class="slider__thumb">
                                                                     <div class="slider__thumb_item">
@@ -297,7 +298,11 @@
                                                                     <div class="slider__content_item">
                                                                         <div class="post-title font-title">
                                                                             <h4>
-
+                                                                            @if($key %3 == 1)
+                                                                            <span class="manga-title-badges custom trending">thịnh hành</span>
+                                                                            @else
+                                                                            <span class="manga-title-badges custom hot">HOT</span>
+                                                                            @endif
                                                                                 <a class="btn-comic"
                                                                                     href="javascrip:void(0);"
                                                                                     data-slug="{{ $comic['slug'] }}">
@@ -317,14 +322,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <div class="slider__meta">
-                                                                    <span class="manga-chapter-type">Video</span>
-                                                                </div>
                                                             </div>
                                                             @endforeach
-
-
                                                         </div>
                                                     </div>
 
@@ -344,18 +343,19 @@
                                                         data-style="style-1" data-count="5">
 
                                                         <div class="slider__container_custom" role="toolbar">
-                                                            @foreach($list_comic as $comic)
+                                                            @foreach($list_comic as $key=>$comic)
                                                             <div class="slider__item ">
                                                                 <div class="slider__thumb">
-                                                                    {{-- <span
-                                                                        class="manga-title-badges custom trending">trending</span>
-                                                                    --}}
+                                                                    @if($key % 3 !=1)                            
+                                                                     <span class="manga-title-badges custom trending">thịnh hành</span>
+                                                                     @else
+                                                                     <span class="manga-title-badges new">new</span>
+                                                                     @endif
                                                                     <div class="slider__thumb_item">
                                                                         <a href="#">
                                                                             <img loading="lazy" decoding="async"
-                                                                                style="height: 300px;"
                                                                                 src="https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }}"
-                                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image"
+                                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image mobile"
                                                                                 alt="" />
                                                                             <div class="slider-overlay"></div>
                                                                         </a>
@@ -394,18 +394,17 @@
                                                         data-style="style-1" data-count="5">
 
                                                         <div class="slider__container_custom" role="toolbar">
-                                                            @foreach($list_comic_anime as $comic)
+                                                            @foreach($list_comic_anime as $key=>$comic)
                                                             <div class="slider__item ">
                                                                 <div class="slider__thumb">
-                                                                    {{-- <span
-                                                                        class="manga-title-badges custom trending">trending</span>
-                                                                    --}}
+                                                                    @if($key % 5 == 1)
+                                                                    <span class="manga-title-badges hot">hot</span>
+                                                                    @endif
                                                                     <div class="slider__thumb_item">
                                                                         <a href="#">
                                                                             <img loading="lazy" decoding="async"
-                                                                                style="height: 300px;"
                                                                                 src="https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }}"
-                                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image"
+                                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image mobile"
                                                                                 alt="" />
                                                                             <div class="slider-overlay"></div>
                                                                         </a>
@@ -435,7 +434,7 @@
 
 
                                                     <div class="x-heading">
-                                                        <h2>Hoàn Thành</h2>
+                                                        <h2>Đã Hoàn Thành</h2>
                                                         <div class="sub-links"><a href="">See All</a><a href="#"> | </a>
                                                         </div>
                                                     </div>
@@ -490,7 +489,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="widget-heading font-nav">
-                                                    <h5 class="heading">All Genres</h5>
+                                                    <h5 class="heading">Tất cả Thể Loại</h5>
                                                 </div>
                                                 <div class="widget-content">
                                                     <div class="genres__collapse" style="display:block;">
@@ -518,10 +517,9 @@
                             <div class="col-md-12">
 
                                 <div class="copyright">
-                                    <h3>Manta</h3>
-                                    <p>Madara Theme by Nesttruyen.com</p>
+                                    <h3>NEST TRUYệN</h3>
+                                    <p>DEVELOPER by Nesttruyen.com</p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -767,6 +765,9 @@
            
             const comic_chapter = await fetch('/api/comic/'+slug+'/'+chapter);
             const responseChapter = await comic_chapter.json();
+            if (responseChapter['code'] == '404') {
+                return false;
+            }
             const chapter_path = responseChapter['chapter']['item']['chapter_path'];
            
             const url = responseChapter['chapter']['domain_cdn'];
@@ -1022,6 +1023,9 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
             const comic_chapter = await fetch('/api/comic/'+slug+'/'+num_chapter);
             const responseChapter = await comic_chapter.json();
+            if (responseChapter['code']=='404') {
+                return false;
+            }
             const chapter = responseChapter['chapter'];
             const chapter_path = responseChapter['chapter']['item']['chapter_path'];
             const contentPage = document.getElementById('entry-content');
