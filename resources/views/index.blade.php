@@ -1175,166 +1175,166 @@
             }
         }   
 
-    fetchAndRenderData();
-    async function genre() {
-            try {
-                const response = await fetch("/api/genre");
-                const responseArray = await response.json();
+        fetchAndRenderData();
+        async function genre() {
+                try {
+                    const response = await fetch("/api/genre");
+                    const responseArray = await response.json();
+                    
+                    const fragment = document.createDocumentFragment();
                 
+                    responseArray['genre'].forEach(item => {
+                        const row = document.createElement("li");
+                        row.classList.add("col-xs-6", "col-sm-4", "col-md-3", "col-lg-2", "col-6");
+                        row.innerHTML = `
+                                <a href="#">
+                                    ${item.name}
+                                </a>
+                        `;
+                        fragment.appendChild(row);
+                    });
+                    
+                    document.getElementById("genre").appendChild(fragment);
+
+                } catch (error) {
+                    console.error("Error fetching data:", error);
+                }
+            }   
+
+            genre();
+            async function loadContent(page) {
+                try {
+            
+                const response = await fetch(`/api/paginate?page=${page}`);
+                const data = await response.json();
+
+            
+                // console.log(data['page']);
+                
+                // Clear current content
+            
+                const contentPage = document.getElementById('numberPage');
+                contentPage.innerHTML = '';
                 const fragment = document.createDocumentFragment();
-            
-                responseArray['genre'].forEach(item => {
-                    const row = document.createElement("li");
-                    row.classList.add("col-xs-6", "col-sm-4", "col-md-3", "col-lg-2", "col-6");
-                    row.innerHTML = `
-                            <a href="#">
-                                ${item.name}
-                            </a>
-                    `;
-                    fragment.appendChild(row);
-                });
-                
-                document.getElementById("genre").appendChild(fragment);
+                const numberPage = document.createElement('ul');
 
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        }   
-
-        genre();
-        async function loadContent(page) {
-            try {
-           
-            const response = await fetch(`/api/paginate?page=${page}`);
-            const data = await response.json();
-
-           
-            // console.log(data['page']);
-            
-            // Clear current content
-           
-            const contentPage = document.getElementById('numberPage');
-            contentPage.innerHTML = '';
-            const fragment = document.createDocumentFragment();
-            const numberPage = document.createElement('ul');
-
-            numberPage.classList.add('slick-dots');
-            numberPage.innerHTML=`
-                 <li class="slick-active" style="width: auto">${data['page']}</li>
-            `;
-            fragment.appendChild(numberPage);
-            document.getElementById("numberPage").appendChild(fragment);
-            data['ongoing'].forEach(item => {
-               
-                
-                const imageUrl = 'https://img.otruyenapi.com/uploads/comics/' + item.thumb_url;
-                const row = document.createElement("tr");
-
-                const subTd = document.createElement("td");
-                subTd.classList.add("thumb");
-                row.appendChild(subTd);
-                const subA = document.createElement("a");
-                subA.classList.add("btn-comic");
-                subA.setAttribute("data-slug",item.slug);
-                subA.innerHTML =`
-                <img loading="lazy" decoding="async" width="75" height="106" src="${imageUrl}" 
-                   class="attachment-manga_wg_post_1 size-manga_wg_post_1 wp-post-image" alt="" />
+                numberPage.classList.add('slick-dots');
+                numberPage.innerHTML=`
+                    <li class="slick-active" style="width: auto">${data['page']}</li>
                 `;
-                subA.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const slug = this.getAttribute('data-slug');
-                    comic_detail(slug);
+                fragment.appendChild(numberPage);
+                document.getElementById("numberPage").appendChild(fragment);
+                data['ongoing'].forEach(item => {
+                
+                    
+                    const imageUrl = 'https://img.otruyenapi.com/uploads/comics/' + item.thumb_url;
+                    const row = document.createElement("tr");
+
+                    const subTd = document.createElement("td");
+                    subTd.classList.add("thumb");
+                    row.appendChild(subTd);
+                    const subA = document.createElement("a");
+                    subA.classList.add("btn-comic");
+                    subA.setAttribute("data-slug",item.slug);
+                    subA.innerHTML =`
+                    <img loading="lazy" decoding="async" width="75" height="106" src="${imageUrl}" 
+                    class="attachment-manga_wg_post_1 size-manga_wg_post_1 wp-post-image" alt="" />
+                    `;
+                    subA.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const slug = this.getAttribute('data-slug');
+                        comic_detail(slug);
+                        
+                    });
+                    subTd.appendChild(subA);
+                    const subTd_1 = document.createElement("td");
+                    subTd_1.classList.add("title");
+                    row.appendChild(subTd_1);
+                    const subA_1 = document.createElement("a");
+                    subA_1.classList.add("btn-comic");
+                    subA_1.setAttribute("data-slug",item.slug);
+                    subA_1.textContent = `${item.name}`;
+                    subA_1.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const slug = this.getAttribute('data-slug');
+                        comic_detail(slug);
+                    });
+                    subTd_1.appendChild(subA_1);
+                    const subTd_2 = document.createElement("td");
+                    subTd_2.classList.add("release", "has-thumb", "free-chap");
+                    row.appendChild(subTd_2);
+                    const subA_2 = document.createElement("a");
+                    subA_2.classList.add("btn-comic");
+                    subA_2.setAttribute("data-slug",item.slug);
+                    subA_2.textContent = `Chương ${item.chaptersLatest[0].chapter_name}`;
+                    subA_2.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        const slug = this.getAttribute('data-slug');
+                        comic_chapter(item.chaptersLatest[0].chapter_name,slug,imageUrl,item.name);
+                    });
+                    subTd_2.appendChild(subA_2);
+                    const subTd_3 = document.createElement("td");
+                    subTd_3.classList.add("time");
+                    subTd_3.innerHTML = `
+                    <span style="font-weight: 900;">•</span>
+                    <span class="post-on font-meta type">Truyện</span>
+                    <span class="post-on font-meta">${timeAgo(item.updatedAt)}</span>
+                    `;
+                    row.appendChild(subTd_3);
+                    fragment.appendChild(row);
                     
                 });
-                subTd.appendChild(subA);
-                const subTd_1 = document.createElement("td");
-                subTd_1.classList.add("title");
-                row.appendChild(subTd_1);
-                const subA_1 = document.createElement("a");
-                subA_1.classList.add("btn-comic");
-                subA_1.setAttribute("data-slug",item.slug);
-                subA_1.textContent = `${item.name}`;
-                subA_1.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const slug = this.getAttribute('data-slug');
-                    comic_detail(slug);
-                });
-                subTd_1.appendChild(subA_1);
-                const subTd_2 = document.createElement("td");
-                subTd_2.classList.add("release", "has-thumb", "free-chap");
-                row.appendChild(subTd_2);
-                const subA_2 = document.createElement("a");
-                subA_2.classList.add("btn-comic");
-                subA_2.setAttribute("data-slug",item.slug);
-                subA_2.textContent = `Chương ${item.chaptersLatest[0].chapter_name}`;
-                subA_2.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const slug = this.getAttribute('data-slug');
-                    comic_chapter(item.chaptersLatest[0].chapter_name,slug,imageUrl,item.name);
-                });
-                subTd_2.appendChild(subA_2);
-                const subTd_3 = document.createElement("td");
-                subTd_3.classList.add("time");
-                subTd_3.innerHTML = `
-                <span style="font-weight: 900;">•</span>
-                <span class="post-on font-meta type">Truyện</span>
-                <span class="post-on font-meta">${timeAgo(item.updatedAt)}</span>
-                `;
-                row.appendChild(subTd_3);
-                fragment.appendChild(row);
                 
-            });
-            
-            document.getElementById("row_recent").appendChild(fragment);
-            } catch (error) {
-            console.error('Error loading content:', error);
-            }
-        }
-
-        // Handle click events on links
-        document.querySelectorAll('.btn-right').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent full page reload
-                const contentDiv = document.getElementById('row_recent');
-                contentDiv.innerHTML = '';
-                
-                const page = this.getAttribute('data-page');
-                const btnLeft = document.querySelector('.btn-left');
-
-                // Lấy giá trị của 'data-page' và chuyển thành số nguyên
-                const pages = parseInt(btnLeft.setAttribute('data-page',page - 1));
-
-                let position = parseInt(this.getAttribute('data-page'));
-                position += 1;
-                this.setAttribute('data-page', position);
-                
-                loadContent(page);
-                
-            });
-        });
-        document.querySelectorAll('.btn-left').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevent full page reload
-                const page = this.getAttribute('data-page');
-                if (page == 0) {
-                    return false;
+                document.getElementById("row_recent").appendChild(fragment);
+                } catch (error) {
+                console.error('Error loading content:', error);
                 }
-                const btnRight = document.querySelector('.btn-right');
-              
-                const pages = parseInt(btnRight.getAttribute('data-page'));
-                btnRight.setAttribute('data-page', pages - 1);
+            }
 
-                let position = parseInt(this.getAttribute('data-page'));
+            // Handle click events on links
+            document.querySelectorAll('.btn-right').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent full page reload
+                    const contentDiv = document.getElementById('row_recent');
+                    contentDiv.innerHTML = '';
+                    
+                    const page = this.getAttribute('data-page');
+                    const btnLeft = document.querySelector('.btn-left');
 
-                position -= 1;
-                this.setAttribute('data-page', position);
-                const contentDiv = document.getElementById('row_recent');
-                contentDiv.innerHTML = '';
-                
-                loadContent(page); // Load content via AJAX
-                
+                    // Lấy giá trị của 'data-page' và chuyển thành số nguyên
+                    const pages = parseInt(btnLeft.setAttribute('data-page',page - 1));
+
+                    let position = parseInt(this.getAttribute('data-page'));
+                    position += 1;
+                    this.setAttribute('data-page', position);
+                    
+                    loadContent(page);
+                    
+                });
             });
-        });
+            document.querySelectorAll('.btn-left').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent full page reload
+                    const page = this.getAttribute('data-page');
+                    if (page == 0) {
+                        return false;
+                    }
+                    const btnRight = document.querySelector('.btn-right');
+                
+                    const pages = parseInt(btnRight.getAttribute('data-page'));
+                    btnRight.setAttribute('data-page', pages - 1);
+
+                    let position = parseInt(this.getAttribute('data-page'));
+
+                    position -= 1;
+                    this.setAttribute('data-page', position);
+                    const contentDiv = document.getElementById('row_recent');
+                    contentDiv.innerHTML = '';
+                    
+                    loadContent(page); // Load content via AJAX
+                    
+                });
+            });
     </script>
 
 </body>

@@ -3,11 +3,15 @@
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\ComicDetail;
+use App\Livewire\ComicHome;
+use App\Livewire\ComicChapter;
 
 //**************Start Route FE********************/
-Route::get("/",[HomeController::class,"index"])->name("home");
-Route::get("/comic",[HomeController::class,"detail"])->name("detail");
-Route::get("/read",[HomeController::class,"read"])->name("read");
+// Route::get("/",[HomeController::class,"index"])->name("home");
+Route::get("/",ComicHome::class)->name("home");
+Route::get("/comic/{slug}",ComicDetail::class)->name("comic");
+Route::get("/comic/{slug}/{chapter}",ComicChapter::class)->name("chapter");
 //**************End Route FE********************/
 
 //**************StartRoute BE API********************/
