@@ -596,7 +596,7 @@
             subDiv4.innerHTML=`
             <div class="summary_image">
                 <a href="#">
-                <img width="450" height="450"  data-src="${imageUrl}${comic_detail['thumb_url']}" data-srcset="${imageUrl}${comic_detail['thumb_url']} 450w, ${imageUrl}${comic_detail['thumb_url']} 150w" data-sizes="(max-width: 450px) 100vw, 450px" class="img-responsive lazyload effect-fade" src="/wp-content/themes/madara/images/dflazy.jpg"  style="padding-top:100%;"  alt="249"/>
+                <img width="450" height="450"  data-src="${imageUrl}${comic_detail['thumb_url']}" data-srcset="${imageUrl}${comic_detail['thumb_url']} 450w, ${imageUrl}${comic_detail['thumb_url']} 150w" data-sizes="(max-width: 450px) 100vw, 450px" class="img-responsive lazyload effect-fade" style="padding-top:100%;"  alt="249"/>
                 </a>
             </div>
             `;
@@ -820,7 +820,6 @@
                 <img width="75" height="106"
                     data-src="${img}"
                     class="img-responsive lazyload effect-fade"
-                    src="https://live.mangabooth.com/x/wp-content/themes/madara/images/dflazy.jpg"
                     style="padding-top:106px;" alt="249" /> </a>
             <h3><a href="#" title="${name}">${name}</a></h3>
                     `;
