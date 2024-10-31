@@ -91,7 +91,6 @@ class ApiController extends Controller
                     return response()->json([
                         "code" => 200,
                         'chapter' => $data_chapter['data'],
-                        'list_chapter' => $data['data']['item']['chapters'][0]['server_data'],
                         'chapter_next' => $nextChapter['chapter_name'],
                         'chapter_prev' => $previousChapter['chapter_name'],
                     ]);

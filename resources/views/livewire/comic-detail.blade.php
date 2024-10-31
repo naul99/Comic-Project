@@ -36,9 +36,9 @@
                         <div class="left">
 
                             <div id="init-links" class="nav-links">
-                                <a href="#" id="btn-read-last" class="c-btn c-btn_style-1">
+                                <a href="{{route('chapter',[$detail['item']['slug'],$chapter_first])}}" wire:navigate id="btn-read-last" class="c-btn c-btn_style-1">
                                     Đọc từ đầu</a>
-                                <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Đọc cuối</a>
+                                <a href="{{route('chapter',[$detail['item']['slug'],$chapter_last])}}" wire:navigate id="btn-read-first" class="c-btn c-btn_style-1">Đọc cuối</a>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                                 <ul class="main version-chap no-volumn">
                                     @foreach (array_reverse($detail['item']['chapters'][0]['server_data']) as $chapters)
                                     <li class="wp-manga-chapter has-thumb free-chap">
-                                        <a style="font-size: 20px;" href="#">Chương - {{ $chapters['chapter_name'] }} </a>
+                                        <a style="font-size: 20px;" href= "{{route('chapter',[$detail['item']['slug'],$chapters['chapter_name']])}}" wire:navigate>Chương - {{ $chapters['chapter_name'] }} </a>
                                         {{-- <span class="chapter-release-date"><a href="#" class="c-new-tag"><!-- --></a></span> --}}
                                     </li>
                                     @endforeach
