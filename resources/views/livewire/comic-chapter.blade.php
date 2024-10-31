@@ -78,9 +78,9 @@
                 </div>
                 <div class="right-footer">
                     <div class="chap-nav">
-                        <button id="prev-chap" type="button" class="prev-chap"><i class="fa fa-chevron-left" aria-hidden="true"></i>
+                        <button href="{{route('chapter',[$slug,$chapter_prev])}}" wire:navigate class="prev-chap"><i class="fa fa-chevron-left" aria-hidden="true"></i>
                             Prev</button>
-                        <button type="button" id="next-chap" class="next-chap">Next <i class="fa fa-chevron-right"
+                        <button href="{{route('chapter',[$slug,$chapter_next])}}" wire:navigate class="next-chap">Next <i class="fa fa-chevron-right"
                                 aria-hidden="true"></i></button>
                     </div>
                 </div>
@@ -131,81 +131,4 @@
     const contentChapter = document.body;
     contentChapter.className = "";
     contentChapter.classList.add("wp-manga-template-default", "single", "single-wp-manga", "postid-249", "wp-embed-responsive", "wp-manga-page", "reading-manga", "click-to-scroll", "keyboard-navigate", "page", "header-style-1", "sticky-enabled", "sticky-style-1", "text-ui-light", "manga-reading-list-style", "minimal-reading-layout");
-</script>
-<script>
-    const url ='https://sv1.otruyencdn.com';
-   
-    const slug = '{{$slug}}'; 
-    const next = document.getElementById("next-chap");
-    next.setAttribute("data-chapter", {{$chapter_next}});
-    
-    next.addEventListener('click', function(event) {
-        event.preventDefault();
-        const numChapter = this.getAttribute("data-chapter");
-        chapters(numChapter,slug,url);
-    });
-    const prev = document.getElementById("prev-chap");
-    prev.setAttribute("data-chapter", {{$chapter_prev}});
-    
-    prev.addEventListener('click', function(event) {
-        event.preventDefault();
-        const numChapters = this.getAttribute("data-chapter");
-        chapters(numChapters,slug,url);
-    });
-    async function chapters(num_chapter,slug,url) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            const comic_chapter = await fetch('/api/comic/'+slug+'/'+num_chapter);
-            const responseChapter = await comic_chapter.json();
-            if (responseChapter['code']=='404') {
-                return false;
-            }
-            const chapter = responseChapter['chapter'];
-            const chapter_path = responseChapter['chapter']['item']['chapter_path'];
-            const contentPage = document.getElementById('entry-content');
-            contentPage.innerHTML = '';
-
-            const setBtnpre = document.getElementById("prev-chap");
-            setBtnpre.setAttribute("data-chapter", responseChapter['chapter_prev']);
-
-            const setBtnnext = document.getElementById("next-chap");
-            setBtnnext.setAttribute("data-chapter", responseChapter['chapter_next']);
-
-            const chapDiv6_1 = document.getElementById("chapter-heading");
-            chapDiv6_1.textContent = `Chương ${chapter['item']['chapter_name']}`;
-
-            const chapName = document.getElementById("chap-name");
-            chapName.textContent = `Chương ${chapter['item']['chapter_name']}`;
-
-            const chapDiv9_1 = document.createElement("div");
-            chapDiv9_1.classList.add("entry-content_wrap");
-            contentPage.appendChild(chapDiv9_1);
-
-            const chapDiv10 = document.createElement("div");
-            chapDiv10.classList.add("read-container");
-            chapDiv9_1.appendChild(chapDiv10);
-
-            const chapDiv11 = document.createElement("div");
-            chapDiv11.classList.add("reading-content");
-            chapDiv10.appendChild(chapDiv11);
-
-            const chapDiv12 = document.createElement("div");
-            chapDiv12.classList.add("chapter-images");
-
-            chapter['item']['chapter_image'].forEach(chapter_img=>{
-                const imgDiv = document.createElement("div");
-                imgDiv.classList.add("page-break");
-
-                const comic_image = document.createElement("img");
-                comic_image.src = `${url}`+`/`+`${chapter_path}`+`/`+`${chapter_img['image_file']}`; 
-                comic_image.classList = "wp-manga-chapter-img", "img-responsive","lazyload-ordered","effect-fade";
-                comic_image.setAttribute('loading','lazy');
-                imgDiv.appendChild(comic_image);
-                chapDiv12.appendChild(imgDiv);
-                
-            });
-            
-            chapDiv11.appendChild(chapDiv12);
-            history.replaceState({}, null, `/comic/${slug}/${num_chapter}`);
-            history.pushState({}, null, `/comic/${slug}/${num_chapter}`);
-        }   
 </script>

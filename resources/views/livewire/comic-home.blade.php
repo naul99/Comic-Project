@@ -269,6 +269,9 @@
 
                 const subA_2 = document.createElement("a");
                 subA_2.textContent = `Chương ${item.chaptersLatest[0].chapter_name}`;
+                const urlChapter = `/comic/${item.slug}/${item.chaptersLatest[0].chapter_name}`;
+                subA_2.setAttribute('href', urlChapter);
+                subA_2.setAttribute('wire:navigate', '');
                 subTd_2.appendChild(subA_2);
 
                 const subTd_3 = document.createElement("td");
@@ -332,12 +335,6 @@
                 <img loading="lazy" decoding="async" width="75" height="106" src="${imageUrl}" 
                 class="attachment-manga_wg_post_1 size-manga_wg_post_1 wp-post-image" alt="" />
                 `;
-                subA.addEventListener('click', function(event) {
-                    event.preventDefault();
-                    const slug = this.getAttribute('data-slug');
-                    comic_detail(slug);
-                    
-                });
                 subTd.appendChild(subA);
                 const subTd_1 = document.createElement("td");
                 subTd_1.classList.add("title");
@@ -359,7 +356,9 @@
                 subA_2.setAttribute('href', urlss);
                 subA_2.setAttribute('wire:navigate', '');
                 subA_2.textContent = `Chương ${item.chaptersLatest[0].chapter_name}`;
-                
+                const urlChapter = `/comic/${item.slug}/${item.chaptersLatest[0].chapter_name}`;
+                subA_2.setAttribute('href', urlChapter);
+                subA_2.setAttribute('wire:navigate', '');
                 subTd_2.appendChild(subA_2);
                 const subTd_3 = document.createElement("td");
                 subTd_3.classList.add("time");
