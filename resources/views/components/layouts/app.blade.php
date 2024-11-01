@@ -3,21 +3,22 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ $title ?? 'NEST COMIC' }}</title>
+        <title>{{ $title ?? 'NEST TRUYEN FREE FREE' }}</title>
         <meta name='robots' content='max-image-preview:large' />
-        <meta property="og:image" content="/wp-content/themes/madara/images/logo.png" />
-        <meta property="og:site_name" content="Madara Child X Theme" />
+        <meta property="og:image" content="/img/icon/angry.png" />
+        <meta property="og:site_name" content="NEST TRUYEN FREE" />
         <meta property="fb:app_id" content="" />
-        <meta property="og:title" content="Madara Child X Theme" />
+        <meta property="og:title" content="NEST TRUYEN FREE" />
         <meta property="og:description" content="Build manga and novel reading site in minutes" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@Madara Child X Theme" />
-        <meta name="twitter:title" content="Madara Child X Theme" />
+        <meta name="twitter:site" content="@NEST TRUYEN FREE" />
+        <meta name="twitter:title" content="NEST TRUYEN FREE" />
         <meta name="twitter:description" content="Build manga and novel reading site in minutes" />
         <meta name="twitter:image" content="/wp-content/themes/madara/images/logo.png" />
         <meta name="description" content="Build manga and novel reading site in minutes" />
         <meta name="generator" content="Powered by Madara - A powerful manga, novel theme from Mangabooth.com" />
     
+        <link rel="shortcut icon" href="/img/icon/angry.png">
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800&display=swap" rel="stylesheet">
         <link rel='stylesheet' id='wp-block-library-css' href='/wp-includes/css/dist/block-library/style.min.css'
             type='text/css' media='all' />
@@ -108,12 +109,12 @@
                                                 <a class="logo" href="/" title="">
                                                     <img class="img-responsive"
                                                         src="/wp-content/themes/madara/images/logo.png"
-                                                        alt="Madara Child X Theme" />
+                                                        alt="NEST TRUYEN FREE" />
                                                 </a>
                                                 <div class="main-menu">
                                                 <div class="section_adult on">
                                                     <a href="/" target="_self" title="Family Safe">
-                                                        <span class="dot"><!-- --></span><span>Family Safe</span>
+                                                        <span class="dot"><!-- --></span><span>Hơn 20.000 Truyện Free</span>
                                                     </a>
                                                 </div>
                                                     <ul class="nav navbar-nav main-navbar">
@@ -200,7 +201,7 @@
                                 <a href="/" target="_self" title="Family Safe">
                                     <span class="dot">
                                         <!-- -->
-                                    </span><span>Family Safe</span>
+                                    </span><span>Hơn 20.000 Truyện Free</span>
                                 </a>
                             </div>
                         </div>

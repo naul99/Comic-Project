@@ -45,14 +45,14 @@
                         <div class="main-col-inner">
                             <div class="search-wrap">
                                 <h3 class="h4">
-                                    <i class="icon ion-ios-star"></i> Thể loại - {{$nameGenre}}
+                                    <i class="icon ion-ios-star"></i> Có {{$totalComic}} Truyện - {{$nameGenre}}
                                 </h3>
                                 <div class="search-lists">
                                     @foreach ($genres as $genre)
                                     <div class="manga__item ">
                                         <div class="manga__thumb">
                                             <div class="manga__thumb_item">
-                                                <a href="#">
+                                                <a wire:navigate href="{{route('comic',$genre['slug'])}}">
                                                     <img width="110" height="150"
                                                         src="{{$imgComic}}{{$genre['thumb_url']}}"
                                                         class="attachment-manga-thumb-1 size-manga-thumb-1 wp-post-image"

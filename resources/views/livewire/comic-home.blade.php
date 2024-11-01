@@ -46,8 +46,8 @@
                                                                     as $genre)
                                                                     <span class="genre-item">
 
-                                                                        <i class="fas fa-circle"></i><a
-                                                                            href="#" rel="tag">{{
+                                                                        <i class="fas fa-circle"></i><a wire:navigate
+                                                                            href="{{route('genre',[$genre['slug'],1])}}" rel="tag">{{
                                                                             $genre['name'] }}</a>
                                                                     </span>
                                                                     @endforeach
