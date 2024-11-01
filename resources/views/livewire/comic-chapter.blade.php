@@ -1,5 +1,4 @@
-<div class="c-page-content style-1 reading-content-wrap chapter-type-manga"
-    data-site-url="https://live.mangabooth.com/x/">
+<div class="c-page-content style-1 reading-content-wrap chapter-type-manga">
     <div class="content-area">
         <div class="container">
             <div class="row">
