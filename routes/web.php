@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\HomeController;
+use App\Livewire\ComicGenre;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\ComicDetail;
 use App\Livewire\ComicHome;
@@ -11,6 +12,7 @@ use App\Livewire\ComicChapter;
 // Route::get("/",[HomeController::class,"index"])->name("home");
 Route::get("/",ComicHome::class)->name("home");
 Route::get("/comic/{slug}",ComicDetail::class)->name("comic");
+Route::get("/genre/{slug}/{page}",ComicGenre::class)->name("genre");
 Route::get("/comic/{slug}/{chapter}",ComicChapter::class)->name("chapter");
 //**************End Route FE********************/
 

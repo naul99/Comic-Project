@@ -302,7 +302,7 @@
                         const row = document.createElement("li");
                         row.classList.add("col-xs-6", "col-sm-4", "col-md-3", "col-lg-2", "col-6");
                         row.innerHTML = `
-                                <a href="#">
+                                <a wire:navigate href="/genre/${item.slug}/1">
                                     ${item.name}
                                 </a>
                         `;
