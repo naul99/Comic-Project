@@ -1,5 +1,13 @@
 <div class="c-page-content style-1 reading-content-wrap chapter-type-manga">
     <div class="content-area">
+        <style>
+            @media only screen and (max-width: 600px) {
+                        .container{
+                            padding-right: 0px;
+                            padding-left:  0px;
+                        }
+                    }
+        </style>
         <div class="container">
             <div class="row">
                 <div class="main-col col-sm-12 sidebar-hidden">
