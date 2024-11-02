@@ -67,7 +67,7 @@
 
                                     <div class="x-heading">
                                         <h2>Adult</h2>
-                                        <div class="sub-links"><a href="/manga/">See All</a><a href="">
+                                        <div class="sub-links"><a wire:navigate href="/genre/adult/1">See All</a><a href="">
                                                 | </a></div>
                                     </div>
                                     <div style="height:18px" aria-hidden="true" class="wp-block-spacer">
@@ -118,7 +118,7 @@
 
                                     <div class="x-heading">
                                         <h2>Anime</h2>
-                                        <div class="sub-links"><a href="/manga/">See All</a><a href="">
+                                        <div class="sub-links"><a wire:navigate href="/genre/anime/1">See All</a><a href="">
                                                 | </a></div>
                                     </div>
                                     <div style="height:18px" aria-hidden="true" class="wp-block-spacer">

@@ -78,6 +78,18 @@
         </script>
        
         <!--End JS-->
+        <style>
+            /* .ui-autocomplete {
+           
+            max-height: 400px;
+            overflow-y: auto;
+            }, */
+            .item-image{
+                padding-right: 15px;
+                height: 60px;
+                width: 50px;
+            },
+        </style>
     </head>
     <body class="home page-template page-template-page-templates page-template-front-page page-template-page-templatesfront-page-php page page-id-189 wp-embed-responsive header-style-1 sticky-enabled sticky-style-1 text-ui-light minimal-reading-layout">
        
@@ -87,7 +99,7 @@
                     <div class="c-header__top">
                         <ul class="search-main-menu">
                             <li>
-                                <form id="blog-post-search" class="ajax" action="/" method="get">
+                                <form id="blog-post-search" class="ajax" action="#" method="get">
                                     <input type="text" placeholder="Search..." name="s" value="">
                                     <input type="submit" value="Search">
                                     <div class="loader-inner line-scale">
@@ -132,7 +144,7 @@
                                                 <div id="search-sidebar">
     
                                                     <form class="manga-search-form search-form ajax" id="blog-post-search"
-                                                        action="/" method="get">
+                                                        action="#" method="get">
                                                         <input class="manga-search-field" type="text" placeholder="Search"
                                                             name="s" value="">
                                                         <button type="submit" class="btn-search"><i
@@ -172,7 +184,7 @@
                         </div>
     
                         <div id="search-sidebar">
-                            <form class="manga-search-form search-form ajax" id="blog-post-search" action="/" method="get">
+                            <form class="manga-search-form search-form ajax" id="blog-post-search" action="#" method="get">
                                 <input class="manga-search-field" type="text" placeholder="Search" name="s" value="">
                                 <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
                                 <div class="loader-inner line-scale">
@@ -210,7 +222,7 @@
                 </header>
                 <style>
                     .rp-mobile{
-                        height:330px
+                        height:300px
                     }
                     @media only screen and (max-width: 600px) {
                         .rp-mobile{

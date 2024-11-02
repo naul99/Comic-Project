@@ -828,165 +828,49 @@ jQuery(document).ready(function($) {
             }
         }
     })
-
-    var ajaxBookmarkDelete = false;
-    $(document).on('click', '.wp-manga-delete-bookmark', function(e) {
-
-        e.preventDefault();
-
-        if (!ajaxBookmarkDelete) {
-
-            ajaxBookmarkDelete = true;
-            var t = $(this);
-            var postID = t.data('post-id');
-            var rowBookmark = $(this).closest("tr");
-
-            if (rowBookmark.length != 0) {
-                rowBookmark.css('opacity', '0.5');
-                var isMangaSingle = 0;
-            }
-
-            if ($('.add-bookmark .action_icon .wp-manga-delete-bookmark').length != 0) {
-                var isMangaSingle = 1;
-                $('.add-bookmark').css('opacity', '0.5');
-            } else {
-                var isMangaSingle = 0;
-                // chapter reading page
-                var li = $('.action_list_icon a.wp-manga-action-button[data-action="bookmark"]').parent();
-                li.css('opacity', '0.5');
-            }
-
-            jQuery.ajax({
-                url: manga.ajax_url,
-                type: 'POST',
-                data: {
-                    action: 'wp-manga-delete-bookmark',
-                    postID: postID,
-                    isMangaSingle: isMangaSingle
-                },
-                success: function(response) {
-                    if (response.success) {
-                        if (rowBookmark.length != 0) {
-                            rowBookmark.fadeOut();
-                            rowBookmark.remove();
-                        }
-                        if (typeof isMangaSingle !== 'undefined' && isMangaSingle == true) {
-                            $('.add-bookmark').empty();
-                            $('.add-bookmark').append(response.data);
-                            $('.add-bookmark').css('opacity', '1');
-                        } else if (typeof isMangaSingle !== 'undefined' && isMangaSingle == false) {
-                            if (response.data.is_empty == true) {
-                                alert(response.data.msg);
-                            } else {
-                                // chapter reading page
-                                var li = $('.action_list_icon a.wp-manga-delete-bookmark').parent();
-                                li.empty();
-                                li.append(response.data);
-                                li.css('opacity', '1');
-                            }
-                        }
-                    }
-                },
-                complete: function(xhr, textStatus) {
-                    ajaxBookmarkDelete = false;
-                }
-            });
-        }
-    })
-
-    var ajaxBookmarkDelete = false;
-    $(document).on('click', '#delete-bookmark-manga', function(e) {
-        e.preventDefault();
-        if (!ajaxBookmarkDelete) {
-            ajaxBookmarkDelete = true;
-            var bookmark = [];
-            $('.bookmark-checkbox:checkbox:checked').each(function(i) {
-                bookmark[i] = $(this).val();
-                $(this).closest('tr').addClass('remove');
-                $(this).closest('tr').css('opacity', '0.5');
-            });
-            jQuery.ajax({
-                url: manga.ajax_url,
-                type: 'POST',
-                data: {
-                    action: 'wp-manga-delete-multi-bookmark',
-                    bookmark: bookmark,
-                },
-                success: function(response) {
-
-                    if (response.success) {
-                        $('tr.remove').remove();
-                    }
-                },
-                complete: function(xhr, textStatus) {
-                    ajaxBookmarkDelete = false;
-                }
-            });
-        }
-    })
-
-    $(document).on('change', '#wp-manga-bookmark-checkall', function(e) {
-        e.preventDefault();
-        var t = $(this);
-        var chechbox = $('.bookmark-checkbox');
-        if (chechbox.length > 0) {
-            if (t.is(':checked')) {
-                $.each(chechbox, function(i, e) {
-                    $(e).prop('checked', true);
-                })
-            } else {
-                $.each(chechbox, function(i, e) {
-                    $(e).prop('checked', false);
-                })
-            }
-        }
-    })
-
     // search
     // manga-search-field
     $('form.manga-search-form.ajax input.manga-search-field').each(function() {
 
         var searchIcon = $(this).parent().children('.ion-ios-search-strong');
-
         var append = $(this).parent();
-
+        var items = [];
         $(this).autocomplete({
             appendTo: append,
             source: function(request, resp) {
+               
                 $.ajax({
-                    url: manga.ajax_url,
-                    type: 'POST',
+                    url: 'https://otruyenapi.com/v1/api/tim-kiem?keyword=' + request.term,
+                    type: 'GET',
                     dataType: 'json',
                     data: {
                         action: 'wp-manga-search-manga',
                         title: request.term,
                     },
+                    
                     success: function(data) {
-                        resp($.map(data.data, function(item) {
-                            if (true == data.success) {
+                        items = $.map(data.data.items, function(item) {
+                            if ('success' == data.status) {
                                 return {
-                                    label: item.title,
-                                    value: item.title,
-                                    url: item.url,
-                                    type: item.type
+                                    label: item.name,
+                                    value: item.name,
+                                    url: item.slug,
+                                    type: item.status,
+                                    img:item.thumb_url,
                                 }
                             } else {
-                                return {
-                                    label: item.message,
-                                    value: item.message,
-                                    type: item.type,
-                                    click: false
-                                }
+                                return false;
                             }
-                        }))
+                        });
+                        resp(items);
                     }
                 });
             },
             select: function(e, ui) {
                 if (ui.item.url) {
-                    window.location.href = ui.item.url;
+                    Livewire.navigate('comic/' + ui.item.url);
                 } else {
-                    if (ui.item.click) {
+                    if (ui.item.url) {
                         return true;
                     } else {
                         return false;
@@ -995,10 +879,14 @@ jQuery(document).ready(function($) {
             },
             open: function(e, ui) {
                 var acData = $(this).data('uiAutocomplete');
-                acData.menu.element.addClass('manga-autocomplete').find('li div').each(function() {
+                acData.menu.element.addClass('manga-autocomplete').find('li div').each(function(index) {
                     var $self = $(this),
+                        item = items[index];
                         keyword = $.trim(acData.term).split(' ').join('|');
-                    $self.html($self.text().replace(new RegExp("(" + keyword + ")", "gi"), '<span class="manga-text-highlight">$1</span>'));
+                    var imgs = $("<img>")
+                    .attr("src", "https://img.otruyenapi.com/uploads/comics/"+item.img)
+                    .addClass("item-image");
+                    $self.html(imgs[0].outerHTML + $self.text().replace(new RegExp("(" + keyword + ")", "gi"), '<span class="manga-text-highlight">$1</span>'));
                 });
             },
             change: function(e, ui) {

@@ -191,7 +191,7 @@ body.text-ui-light .site-header .c-sub-header-nav:not(.sticky) {
 }
 
 .menu-right #search-sidebar input {
-    width: 160px;
+    width: 500px;
     border: none;
     background: rgb(52, 52, 52);
     border-radius: 50px;
