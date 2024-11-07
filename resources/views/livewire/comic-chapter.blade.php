@@ -90,12 +90,10 @@
                 </div>
                 <div class="right-footer">
                     <div class="chap-nav">
-                        {{-- <button href="{{route('chapter',[$slug,$chapter_prev])}}" wire:navigate class="prev-chap" ><i class="fa fa-chevron-left" aria-hidden="true"></i>
-                            Prev</button> --}}
+                        
                             <button id="prev-chap" class="prev-chap button" value="{{$chapter_prev}}" ><i class="fa fa-chevron-left" aria-hidden="true"></i>
                                 Prev</button>
-                        {{-- <button href="{{route('chapter',[$slug,$chapter_next])}}" wire:navigate class="next-chap">Next <i class="fa fa-chevron-right"
-                                aria-hidden="true"></i></button> --}}
+                      
                         <button id="next-chap" class="next-chap button" value="{{$chapter_next}}">Next <i class="fa fa-chevron-right"
                                 aria-hidden="true"></i></button>
                     </div>
@@ -148,7 +146,7 @@
     contentChapter.className = "";
     contentChapter.classList.add("wp-manga-template-default", "single", "single-wp-manga", "postid-249", "wp-embed-responsive", "wp-manga-page", "reading-manga", "click-to-scroll", "keyboard-navigate", "page", "header-style-1", "sticky-enabled", "sticky-style-1", "text-ui-light", "manga-reading-list-style", "minimal-reading-layout");
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 
 <script>
  $("#loading").hide();
