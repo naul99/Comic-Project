@@ -76,14 +76,8 @@
         <script type="text/javascript" src="/wp-content/themes/madara/js/template.js" id="madara-js-js"></script>
         <script type="text/javascript" src="/wp-content/themes/madara-child-x/assets/js/child.js" id="madara-child-js-js">
         </script>
-       
         <!--End JS-->
         <style>
-            /* .ui-autocomplete {
-           
-            max-height: 400px;
-            overflow-y: auto;
-            }, */
             .item-image{
                 padding-right: 15px;
                 height: 60px;

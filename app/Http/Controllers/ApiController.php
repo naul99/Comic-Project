@@ -55,21 +55,8 @@ class ApiController extends Controller
             ]);
         }
     }
-    public function detail($slug){
-        $data = Http::get("https://otruyenapi.com/v1/api/truyen-tranh/".$slug);
-        $count_last = count($data['data']['item']['chapters']['0']['server_data']) -1;
-        $last = $data['data']['item']['chapters']['0']['server_data'][$count_last]['chapter_name'];
-        $first = $data['data']['item']['chapters']['0']['server_data'][0]['chapter_name'];
-        
-        return response()->json([
-            "code"=> 200,
-            'detail' => $data['data'],
-            'chapter_last' => $last,
-            'chapter_first'=>$first,
-        ]);
-    }
     public function read($slug,$chapter){
-        $data = Http::timeout(100)->get("https://otruyenapi.com/v1/api/truyen-tranh/".$slug);
+        $data = Http::get("https://otruyenapi.com/v1/api/truyen-tranh/".$slug);
 
         if ($data->successful() && isset($data['data']['item']['chapters'][0]['server_data'])) {
             $chapters = $data['data']['item']['chapters'][0]['server_data'];
@@ -85,7 +72,7 @@ class ApiController extends Controller
                 $nextChapter = $currentIndex < count($chapters) - 1 ? $chapters[$currentIndex + 1] : $currentChapter;
  
                 $url = $currentChapter['chapter_api_data'];
-                $data_chapter = Http::timeout(100)->get($url);
+                $data_chapter = Http::get($url);
                 
                 if ($data_chapter->successful()) {
                     return response()->json([
