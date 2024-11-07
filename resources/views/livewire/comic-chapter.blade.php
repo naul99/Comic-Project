@@ -120,11 +120,11 @@
                             <div class="listing-chapters_wrap cols-1 show-more">
                                 <ul class="main version-chap no-volumn">
                                     @foreach ($list_chapter as $chapters)
-                                    <li class="wp-manga-chapter has-thumb free-chap  ">
+                                    <li class="wp-manga-chapter has-thumb free-chap">
                                         <span class="coin free">Free</span>
                                         <div class="chapter-thumbnail">
-                                            <img class="thumb"
-                                                src="{{$comic_img}}" loading="lazy"/>
+                                            <a href="{{route('chapter',[$slug,$chapters['chapter_name']])}}" wire:navigate><img class="thumb"
+                                                src="{{$comic_img}}" loading="lazy"/></a>
                                         </div>
                                         <div class="chapter-name">
                                             <a href="{{route('chapter',[$slug,$chapters['chapter_name']])}}" wire:navigate>

@@ -48,8 +48,8 @@
     
         <link rel='stylesheet' id='madara-icons-css'
             href='/wp-content/themes/madara/css/fonts/ct-icon/ct-icon.css?ver=6.6.2' type='text/css' media='all' />
-        <link rel='stylesheet' id='loaders-css' href='/wp-content/themes/madara/css/loaders.min.css' type='text/css'
-            media='all' />
+        {{-- <link rel='stylesheet' id='loaders-css' href='/wp-content/themes/madara/css/loaders.min.css' type='text/css'
+            media='all' /> --}}
         <link rel='stylesheet' id='madara-css-css' href='/wp-content/themes/madara-child-x/style.css' type='text/css'
             media='all' />
         <link rel='stylesheet' id='mycred-front-css' href='/wp-content/plugins/mycred/assets/css/mycred-front.css'
@@ -57,7 +57,7 @@
     
         <!--End CSS-->
         <!--Start JS-->
-        <script src="/wp-includes/js/wp-emoji-release.min.js"></script>
+        {{-- <script src="/wp-includes/js/wp-emoji-release.min.js"></script> --}}
         <script type="text/javascript" src="/wp-includes/js/jquery/jquery.min.js" id="jquery-core-js"></script>
         <script type="text/javascript" src="/wp-includes/js/jquery/jquery-migrate.min.js" id="jquery-migrate-js"></script>
         <script type="text/javascript" src="/wp-includes/js/jquery/ui/core.min.js" id="jquery-ui-core-js"></script>
@@ -295,8 +295,8 @@
         <script type="text/javascript" src="/wp-content/plugins/madara-core/assets/slick/slick.min.js"
             id="wp-manga-slick-js-js"></script>
         <script type="text/javascript" src="/wp-content/themes/madara/js/slick/slick.min.js" id="slick-js"></script>
-        <script type="text/javascript" src="/wp-content/plugins/madara-shortcodes/shortcodes/js/ct-shortcodes.js"
-            id="ct-shortcode-js-js"></script>
+        {{-- <script type="text/javascript" src="/wp-content/plugins/madara-shortcodes/shortcodes/js/ct-shortcodes.js"
+            id="ct-shortcode-js-js"></script> --}}
         <script>
             async function genre() {
                 try {
