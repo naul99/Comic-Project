@@ -149,6 +149,7 @@
 
 
 <script>
+ $("#site-footer").hide();
  $("#loading").hide();
  $(".button").click(function(e) {
     e.preventDefault();
