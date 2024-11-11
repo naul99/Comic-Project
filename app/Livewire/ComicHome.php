@@ -34,11 +34,19 @@ class ComicHome extends Component
                 $list_comic_anime[]= $comic;
             }
         }
+        $data_comic_color = Http::get('https://otruyenapi.com/v1/api/the-loai/truyen-mau');
+    
+        foreach ($data_comic_color['data']['items'] as $comic) {
+            if($comic['chaptersLatest'] != null){
+                $list_comic_color[]= $comic;
+            }
+        }
 
         return view('livewire.comic-home',[
             'list_comic'=>$list_comic,
             'list_comic_new'=>$list_comic_new,
             'list_comic_anime'=>$list_comic_anime,
+            'list_comic_color'=>$list_comic_color,
         ]);
     }
 }

@@ -203,6 +203,70 @@
 
                                     <div style="height:30px" aria-hidden="true" class="wp-block-spacer">
                                     </div>
+                                    <div class="x-heading">
+                                        <h2>Truyện màu</h2>
+                                        <div class="sub-links"><a wire:navigate href="/genre/truyen-mau/1">See All</a><a href="">
+                                                | </a></div>
+                                    </div>
+                                    <div style="height:18px" aria-hidden="true" class="wp-block-spacer">
+                                    </div>
+
+                                    <div id="c-post-slider-100" class="manga-slider style-1 no-padding"
+                                        data-style="style-1" data-count="5">
+
+                                        <div data-slick='{
+                                            "slidesToShow": 5,
+                                            "slidesToScroll": 5,
+                                            "responsive": [
+                                                {
+                                                    "breakpoint": 768,
+                                                    "settings": {
+                                                        "slidesToShow": 4,
+                                                        "slidesToScroll": 4
+                                                    }
+                                                },
+                                                {
+                                                    "breakpoint": 480,
+                                                    "settings": {
+                                                        "slidesToShow": 2,
+                                                        "slidesToScroll": 2
+                                                    }
+                                                }
+                                            ]
+                                        }' class="slider__container_custom" role="toolbar">
+                                            @foreach($list_comic_color as $comic)
+                                            <div class="slider__item ">
+                                                <div class="slider__thumb">
+                                                    <div class="slider__thumb_item">
+                                                        <a href="#">
+                                                            <img loading="lazy" decoding="async"
+                                                                src="https://img.otruyenapi.com/uploads/comics/{{ $comic['thumb_url'] }}"
+                                                                class="attachment-madara_x_slider_1 size-madara_x_slider_1 wp-post-image rp-mobile"
+                                                                alt="" />
+                                                            <div class="slider-overlay"></div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="slider__content">
+                                                    <div class="slider__content_item">
+                                                        <div class="post-title font-title">
+                                                            <h4>
+                                                                <a wire:navigate href="{{route('comic',$comic['slug'])}}">
+                                                                    {{$comic['name']}} </a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            @endforeach
+                                        </div>
+
+
+                                    </div>
+
+                                    <div style="height:30px" aria-hidden="true" class="wp-block-spacer">
+                                    </div>
 
 
 
