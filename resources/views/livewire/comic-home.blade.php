@@ -12,7 +12,7 @@
                                     <div id="c-post-slider-495" class="manga-slider style-2"
                                         data-style="style-2" data-count="3">
 
-                                        <div class="slider__container" role="toolbar">
+                                        <div data-slick='{"slidesToShow": 3, "slidesToScroll": 3,"autoplay": true,"autoplaySpeed": 2000}' class="slider__container" role="toolbar">
                                             @foreach($list_comic_new as $key=>$comic)
                                             <div class="slider__item ">
                                                 <div class="slider__thumb">
@@ -73,11 +73,31 @@
                                     <div style="height:18px" aria-hidden="true" class="wp-block-spacer">
                                     </div>
 
-                                    <div id="c-post-slider-100" class="manga-slider style-1 no-padding"
+                                    <div  class="manga-slider style-1 no-padding"
                                         data-style="style-1" data-count="5">
 
-                                        <div class="slider__container_custom" role="toolbar">
+                                        <div data-slick='{
+                                            "slidesToShow": 5,
+                                            "slidesToScroll": 5,
+                                            "responsive": [
+                                                {
+                                                    "breakpoint": 768,
+                                                    "settings": {
+                                                        "slidesToShow": 4,
+                                                        "slidesToScroll": 4
+                                                    }
+                                                },
+                                                {
+                                                    "breakpoint": 480,
+                                                    "settings": {
+                                                        "slidesToShow": 2,
+                                                        "slidesToScroll": 2
+                                                    }
+                                                }
+                                            ]
+                                        }' class="slider__container_custom" role="toolbar">
                                             @foreach($list_comic as $key=>$comic)
+                                            
                                             <div class="slider__item ">
                                                 <div class="slider__thumb">
                                                     @if($key % 3 !=1)                            
@@ -127,7 +147,26 @@
                                     <div id="c-post-slider-100" class="manga-slider style-1 no-padding"
                                         data-style="style-1" data-count="5">
 
-                                        <div class="slider__container_custom" role="toolbar">
+                                        <div data-slick='{
+                                            "slidesToShow": 5,
+                                            "slidesToScroll": 5,
+                                            "responsive": [
+                                                {
+                                                    "breakpoint": 768,
+                                                    "settings": {
+                                                        "slidesToShow": 4,
+                                                        "slidesToScroll": 4
+                                                    }
+                                                },
+                                                {
+                                                    "breakpoint": 480,
+                                                    "settings": {
+                                                        "slidesToShow": 2,
+                                                        "slidesToScroll": 2
+                                                    }
+                                                }
+                                            ]
+                                        }' class="slider__container_custom" role="toolbar">
                                             @foreach($list_comic_anime as $key=>$comic)
                                             <div class="slider__item ">
                                                 <div class="slider__thumb">
