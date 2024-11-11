@@ -22,7 +22,7 @@ class ComicHome extends Component
                 $list_comic_new[]= $comic;
                 $count++;
         
-                if ($count >= 10) {
+                if ($count >= 15) {
                     break;
                 }
             }
