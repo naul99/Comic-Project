@@ -84,6 +84,7 @@
                 width: 50px;
             },
         </style>
+        @livewireStyles
     </head>
     <body class="home page-template page-template-page-templates page-template-front-page page-template-page-templatesfront-page-php page page-id-189 wp-embed-responsive header-style-1 sticky-enabled sticky-style-1 text-ui-light minimal-reading-layout">
        
@@ -325,7 +326,7 @@
 
             genre();
         </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+       
         @livewireScripts
     </body>
 </html>

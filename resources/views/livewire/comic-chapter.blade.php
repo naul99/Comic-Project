@@ -8,6 +8,11 @@
                         }
                     }
         </style>
+        <style>
+            .site-footer{
+                display: none;
+            }
+        </style>
         <div class="container">
             <div class="row">
                 <div class="main-col col-sm-12 sidebar-hidden">
@@ -141,17 +146,18 @@
         </div>
     </div>
 </div>
+
 <script>
     const contentChapter = document.body;
     contentChapter.className = "";
     contentChapter.classList.add("wp-manga-template-default", "single", "single-wp-manga", "postid-249", "wp-embed-responsive", "wp-manga-page", "reading-manga", "click-to-scroll", "keyboard-navigate", "page", "header-style-1", "sticky-enabled", "sticky-style-1", "text-ui-light", "manga-reading-list-style", "minimal-reading-layout");
 </script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
- $("#site-footer").hide();
- $("#loading").hide();
- $(".button").click(function(e) {
+    $("#site-footer").hide();
+    $("#loading").hide();
+    $(".button").click(function(e) {
     e.preventDefault();
     $("#loading").show();
     window.scrollTo({
@@ -167,8 +173,6 @@
         url: "/api/read/{{$slug}}/"+$(this).val(),
         success: function(result) {
             
-           
-
             const path = result['chapter']['item']['chapter_path'];
             const n = result['chapter']['item']['chapter_name'];
           
